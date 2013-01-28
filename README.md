@@ -3,7 +3,7 @@
 
 The Ruby Simple Exception Notification (a.k.a Rusen) gem provides a simple way for login and sending errors in any ruby application.
 
-The email includes information about the current request, session, and environment, and also gives a backtrace of the exception.
+The notification includes information about the current request, session, and environment, and also gives a backtrace of the exception.
 
 Installation
 ---
@@ -48,12 +48,11 @@ rescue Exception => exception
   Rusen.notify(exception)
 end
 ```
-In this way if you modify the notification settings in runtime every notification
-being sent after will take the modifications into account.
+In this way if you modify the notifications settings in runtime every notification sent after will use the new settings.
 
 ### With local configuration
 
-This method is intended fro more control, you may for example want to send emails when a particular exception occurs but juts print to stdout for others.
+This method is intended for more control when notifying, you may for example want to send an email when a particular exception occurs but juts print to stdout for others.
 To archive this you can do the following:
 ```ruby
 @email_settings = Settings.new
@@ -122,13 +121,14 @@ Settings
 ---
 ### Outputs
 Currently supported outputs are :io and :email, but the more outputs are easy to add so can customize Rusen to your needs.
+
 Note: :io will only print to stdout for now but there are plans to extend it to anything that Ruby::IO supports
 
 ### Sections
 You can choose the sections to output simply by setting the appropriate values in the configuration.
 
 ### Email settings
-All the email settings are self explanatory but you contact me if any of them need clarification.
+All the email settings are self explanatory but you can contact me if any of them needs clarification.
 
 Extending to more outputs
 ---
