@@ -127,6 +127,9 @@ Note: :io will only print to stdout for now but there are plans to extend it to 
 ### Sections
 You can choose the sections to output simply by setting the appropriate values in the configuration.
 
+### Exclude if
+Here you can pass a block that will receive the error, if the block returns false then the error will be notified.
+
 ### Email settings
 All the email settings are self explanatory but you can contact me if any of them needs clarification.
 

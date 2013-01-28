@@ -22,6 +22,12 @@ module Rusen
       @notifiers << notifier_class.new(@settings)
     end
 
+    # Sends a notification to the configured outputs.
+    #
+    # @param [Exception] exception The error.
+    # @param [Hash<Object, Object>] request The request params
+    # @param [Hash<Object, Object>] environment The environment status.
+    # @param [Hash<Object, Object>] session The session status.
     def notify(exception, request = nil, environment = nil, session = nil)
       begin
         notification = Notification.new(exception, request, environment, session)
@@ -32,7 +38,7 @@ module Rusen
 
       # We need to ignore all the exceptions thrown by the notifiers.
       rescue Exception
-        ERROR("Rusen: Some or all the notifiers failed to sent the notification.")
+        warn("Rusen: Some or all the notifiers failed to sent the notification.")
       end
     end
 

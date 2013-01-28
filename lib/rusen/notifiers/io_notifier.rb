@@ -42,9 +42,9 @@ module Rusen
             print_hash(notification.environment)
           end
 
-        # We need to ignore all the exceptions thrown by IONotifier.notify.
+        # We need to ignore all the exceptions thrown by IONotifier#notify.
         rescue Exception => e
-          ERROR("Rusen: #{e.message} prevented the io notifier from login the error.")
+          warn("Rusen: #{e.message} prevented the io notifier from login the error.")
         end
       end
 

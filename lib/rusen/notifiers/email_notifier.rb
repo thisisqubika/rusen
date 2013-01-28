@@ -20,9 +20,10 @@ module Rusen
 
           Pony.mail(email_options.merge({:body => build_body}))
 
-        # We need to ignore all the exceptions thrown by EmailNotifier.notify.
+        # We need to ignore all the exceptions thrown by EmailNotifier#notify.
         rescue Exception => e
-          ERROR("Rusen: #{e.message} prevented the notification email from being sent.")
+          warn("Rusen: #{e.class}: #{e.message} prevented the notification email from being sent.")
+          puts e.backtrace
         end
       end
 
