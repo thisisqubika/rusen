@@ -4,11 +4,11 @@ Gem::Specification.new do |s|
   s.date            = '2012-01-25'
   s.platform        = Gem::Platform::RUBY
   s.authors         = ['Adrian Gomez']
-  s.summary         = 'Ruby Simple EXception Notification'
-  s.description     = 'Ruby Simple EXception Notification (a.k.a. rusen) as it names indicates is a
+  s.summary         = 'RUby Simple Exception Notification'
+  s.description     = 'RUby Simple Exception Notification (a.k.a. rusen) as it names indicates is a
                        simple exception notification for ruby.'
   s.email           = 'adri4n.gomez@gmail.com'
-  #s.homepage        = 'http://rubygems.org/gems/hola'
+  s.homepage        = 'https://github.com/Moove-it/rusen'
 
   s.files           = Dir.glob('{lib}/**/*') + %w(LICENSE README.md CHANGELOG.md)
 
