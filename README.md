@@ -89,6 +89,7 @@ rescue SmallException => exception
 rescue BigException => exception
   @email_notifier.notify(exception)
 end
+```
 
 Middleware
 ---
