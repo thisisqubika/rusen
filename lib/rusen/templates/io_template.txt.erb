@@ -1,0 +1,34 @@
+*******************************************************************************
+<% if @settings.sections.include?(:backtrace) %>
+-------------------------------
+Backtrace:
+-------------------------------
+<%= @notification.exception.class %>: <%= @notification.exception.message%><% @notification.exception.backtrace.each do |backtrace_step| %>
+<%= "\t" + backtrace_step %><% end %>
+<% end %>
+
+<% if @settings.sections.include?(:request) %>
+-------------------------------
+Request:
+-------------------------------
+<% @notification.request.each do |k, v| %>
+<%= k.to_s + ":\t\t\t" + v.to_s %><% end %>
+<% end %>
+
+<% if @settings.sections.include?(:session) %>
+-------------------------------
+Session:
+-------------------------------
+<% @notification.session.each do |k, v| %>
+<%= k.to_s + ":\t\t\t" + v.to_s %><% end %>
+<% end %>
+
+<% if @settings.sections.include?(:environment) %>
+-------------------------------
+Environment:
+-------------------------------
+<% @notification.environment.each do |k, v| %>
+<%= k.to_s + ":\t\t\t" + v.to_s %><% end %>
+<% end %>
+
+*******************************************************************************

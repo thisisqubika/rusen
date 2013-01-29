@@ -15,33 +15,10 @@ module Rusen
       end
 
       def notify(notification)
+        @notification = notification
+
         begin
-          if @settings.sections.include?(:backtrace)
-
-            print_title('Backtrace')
-
-            @output.puts notification.exception.message
-            @output.puts notification.exception.backtrace
-          end
-
-          if @settings.sections.include?(:request)
-            print_title('Request')
-
-            print_hash(notification.request)
-          end
-
-          if @settings.sections.include?(:session)
-            print_title('Session')
-
-            print_hash(notification.session)
-          end
-
-          if @settings.sections.include?(:environment)
-            print_title('Environment')
-
-            print_hash(notification.environment)
-          end
-
+          @output.puts build_content
         # We need to ignore all the exceptions thrown by IONotifier#notify.
         rescue Exception => e
           warn("Rusen: #{e.message} prevented the io notifier from login the error.")
@@ -50,17 +27,14 @@ module Rusen
 
       private
 
-      def print_title(title)
-        @output.puts '-------------------------------'
-        @output.puts "#{title}:"
-        @output.puts '-------------------------------'
+      def build_content
+        template_path = File.expand_path('../../templates/io_template.txt.erb', __FILE__)
+
+        template = File.open(template_path).read
+        rhtml = ERB.new(template)
+        rhtml.result(binding)
       end
 
-      def print_hash(hash)
-        hash.each.each do |k, v|
-          @output.puts "#{k}\t\t\t#{v}"
-        end
-      end
     end
 
   end
