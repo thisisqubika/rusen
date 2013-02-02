@@ -1,9 +1,9 @@
 [RU]by [S]imple [E]xception [N]otification
 ====
 
-The Ruby Simple Exception Notification (a.k.a Rusen) gem provides a simple way for login and sending errors in any ruby application.
+The Ruby Simple Exception Notification (a.k.a Rusen) gem provides a simple way for logging and sending errors in any ruby application.
 
-The notification includes information about the current request, session, and environment, and also gives a backtrace of the exception.
+The notification includes information about the current request, session, environment and also gives a backtrace of the exception.
 
 Installation
 ---
@@ -48,12 +48,12 @@ rescue Exception => exception
   Rusen.notify(exception)
 end
 ```
-In this way if you modify the notifications settings in runtime every notification sent after will use the new settings.
+This way, if you modify the notifications settings at runtime, every notification sent afterwards will use the new settings.
 
 ### With local configuration
 
-This method is intended for more control when notifying, you may for example want to send an email when a particular exception occurs but juts print to stdout for others.
-To archive this you can do the following:
+This method lets you have more control when notifying. You may want for example to send an email when a particular exception occurs and just print to stdout otherwise.
+To achieve this you can do the following:
 ```ruby
 @email_settings = Settings.new
 @email_settings.outputs = settings[:email]
@@ -92,10 +92,10 @@ end
 
 Middleware
 ---
-Rusen comes with a rack and rails especial (soon to come) middleware for easy usage.
+Rusen comes with a rack and rails special (soon to come) middleware for easy usage.
 
 ### Rack
-To use Rusen in any rack application you just have to add the following code some where in your app (ex: config/initializers/rusen.rb):
+To use Rusen in any rack application you just have to add the following code somewhere in your app (ex: config/initializers/rusen.rb):
 ```ruby
 require 'rusen/middleware/rusen_rack'
 
@@ -115,23 +115,23 @@ use Rusen::Middleware::RusenRack,
                         :enable_starttls_auto => true
                       }
 ```
-This will capture any unhandled exception send an email and write a trace in stdout.
+This will capture any unhandled exception, send an email and write a trace in stdout.
 
 Settings
 ---
 ### Outputs
-Currently supported outputs are :io and :email, but the more outputs are easy to add so can customize Rusen to your needs.
+Currently supported outputs are :io and :email. More outputs are easy to add so you can customize Rusen to your needs.
 
-Note: :io will only print to stdout for now but there are plans to extend it to anything that Ruby::IO supports
+Note: :io will only print to stdout for the time being, but there are plans to extend it to anything that Ruby::IO supports.
 
 ### Sections
-You can choose the sections to output simply by setting the appropriate values in the configuration.
+You can choose the output sections simply by setting the appropriate values in the configuration.
 
 ### Exclude if
-Here you can pass a block that will receive the error, if the block returns false then the error will be notified.
+Here you can pass a block that will receive the error. If the block returns false, then the error will be notified.
 
 ### Email settings
-All the email settings are self explanatory but you can contact me if any of them needs clarification.
+All the email settings are self explanatory, but you can contact me if any of them needs clarification.
 
 Extending to more outputs
 ---
