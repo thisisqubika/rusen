@@ -1,5 +1,7 @@
 require 'spec_helper'
 
+require 'stringio'
+
 require 'rusen'
 require 'rusen/notifiers/io_notifier'
 
@@ -14,17 +16,17 @@ describe Rusen::Notifiers::IONotifier do
   end
 
   let(:settings) { Rusen::Settings.new }
-  let(:output) { double(:output) }
+  let(:output) { StringIO.new }
   let(:notifier) { Rusen::Notifiers::IONotifier.new(settings, output) }
-  let(:notification) { Rusen::Notification.new(Exception.new) }
+
+  let(:notification) do
+    e = Exception.new
+    e.set_backtrace([])
+
+    Rusen::Notification.new(e)
+  end
 
   describe '#notify' do
-
-    before do
-      output.stub(:puts)
-      notifier.stub(:print_title)
-      notifier.stub(:print_hash)
-    end
 
     context 'sections include :backtrace' do
       before do
@@ -32,21 +34,24 @@ describe Rusen::Notifiers::IONotifier do
       end
 
       it 'prints the backtrace section title' do
-        notifier.should_receive(:print_title).with('Backtrace')
-
         notifier.notify(notification)
+
+        output.rewind
+        output.read.should match('Backtrace:')
       end
 
       it 'prints exception message' do
-        output.should_receive(:puts).with(notification.exception.message)
-
         notifier.notify(notification)
+
+        output.rewind
+        output.read.should match(notification.exception.message)
       end
 
       it 'prints exception backtrace' do
-        output.should_receive(:puts).with(notification.exception.backtrace)
-
         notifier.notify(notification)
+
+        output.rewind
+        output.read.should match(notification.exception.backtrace.join($/))
       end
 
     end
@@ -57,9 +62,10 @@ describe Rusen::Notifiers::IONotifier do
       end
 
       it 'does not prints the backtrace section title' do
-        notifier.should_not_receive(:print_title).with('Backtrace')
-
         notifier.notify(notification)
+
+        output.rewind
+        output.read.should_not match('Backtrace:')
       end
     end
 
@@ -69,15 +75,24 @@ describe Rusen::Notifiers::IONotifier do
       end
 
       it 'prints the request section title' do
-        notifier.should_receive(:print_title).with('Request')
-
         notifier.notify(notification)
+
+        output.rewind
+        output.read.should match('Request:')
       end
 
-      it 'prints request hash' do
-        notifier.should_receive(:print_hash).with(notification.request)
-
+      it 'prints request hash keys' do
         notifier.notify(notification)
+
+        output.rewind
+        output.read.should match(notification.request.keys.join('.*'))
+      end
+
+      it 'prints request hash values' do
+        notifier.notify(notification)
+
+        output.rewind
+        output.read.should match(notification.request.values.join('.*'))
       end
 
     end
@@ -88,9 +103,10 @@ describe Rusen::Notifiers::IONotifier do
       end
 
       it 'does not prints the request section title' do
-        notifier.should_not_receive(:print_title).with('Request')
-
         notifier.notify(notification)
+
+        output.rewind
+        output.read.should_not match('Request:')
       end
     end
 
@@ -100,15 +116,24 @@ describe Rusen::Notifiers::IONotifier do
       end
 
       it 'prints the session section title' do
-        notifier.should_receive(:print_title).with('Session')
-
         notifier.notify(notification)
+
+        output.rewind
+        output.read.should match('Session:')
       end
 
-      it 'prints session hash' do
-        notifier.should_receive(:print_hash).with(notification.session)
-
+      it 'prints session hash keys' do
         notifier.notify(notification)
+
+        output.rewind
+        output.read.should match(notification.session.keys.join('.*'))
+      end
+
+      it 'prints session hash values' do
+        notifier.notify(notification)
+
+        output.rewind
+        output.read.should match(notification.session.values.join('.*'))
       end
 
     end
@@ -119,9 +144,10 @@ describe Rusen::Notifiers::IONotifier do
       end
 
       it 'does not prints the session section title' do
-        notifier.should_not_receive(:print_title).with('Session')
-
         notifier.notify(notification)
+
+        output.rewind
+        output.read.should_not match('Session:')
       end
     end
 
@@ -131,17 +157,32 @@ describe Rusen::Notifiers::IONotifier do
       end
 
       it 'prints the environment section title' do
-        notifier.should_receive(:print_title).with('Environment')
-
         notifier.notify(notification)
+
+        output.rewind
+        output.read.should match('Environment:')
       end
 
       it 'prints environment hash' do
-        notifier.should_receive(:print_hash).with(notification.environment)
-
         notifier.notify(notification)
+
+        output.rewind
+        output.read.should match('Environment:')
       end
 
+      it 'prints environment hash keys' do
+        notifier.notify(notification)
+
+        output.rewind
+        output.read.should match(notification.environment.keys.join('.*'))
+      end
+
+      it 'prints environment hash values' do
+        notifier.notify(notification)
+
+        output.rewind
+        output.read.should match(notification.environment.values.join('.*'))
+      end
     end
 
     context 'sections does not include :environment' do
@@ -150,9 +191,10 @@ describe Rusen::Notifiers::IONotifier do
       end
 
       it 'does not prints the environment section title' do
-        notifier.should_not_receive(:print_title).with('Environment')
-
         notifier.notify(notification)
+
+        output.rewind
+        output.read.should_not match('Environment:')
       end
     end
 

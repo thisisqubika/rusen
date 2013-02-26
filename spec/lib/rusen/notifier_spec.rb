@@ -13,6 +13,9 @@ module Rusen
         :dummy
       end
 
+      def initialize(settings)
+      end
+
       def notify(notification)
       end
 

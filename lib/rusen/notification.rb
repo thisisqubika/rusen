@@ -5,11 +5,11 @@ module Rusen
 
     attr_reader :exception, :request, :environment, :session
 
-    def initialize(exception, request = nil, environment = nil, session = nil)
+    def initialize(exception, request = {} , environment = {}, session = {})
       @exception = exception
-      @request = request || {}
-      @environment = environment  || {}
-      @session = session || {}
+      @request = request
+      @environment = environment
+      @session = session
     end
 
   end
