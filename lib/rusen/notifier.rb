@@ -1,6 +1,7 @@
 require 'rusen/notification'
 require 'rusen/notifiers/io_notifier'
 require 'rusen/notifiers/email_notifier'
+require 'rusen/notifiers/log4r_notifier'
 
 module Rusen
 

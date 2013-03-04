@@ -133,6 +133,31 @@ Here you can pass a block that will receive the error. If the block returns fals
 ### Email settings
 All the email settings are self explanatory, but you can contact me if any of them needs clarification.
 
+### Log4r settings
+* logger_name _(required)_: Logger used for logging errors.
+* log4r_config_file _(optional)_: YAML file that contains Log4r configuration. Rusen will load that file when given.
+
+Sample of Log4r configuration file contents:
+
+```
+log4r_config:
+  loggers:
+    - name: error_notifications
+      level: ERROR
+      trace: false
+      outputters:
+        - logfile
+        - stdoout
+
+  outputters:
+    - type: FileOutputter
+      name: logfile
+      filename: 'log/service.log'
+
+    - type: StdoutOutputter
+      name: stdout
+```
+
 Extending to more outputs
 ---
 Soon to come!
