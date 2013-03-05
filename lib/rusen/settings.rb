@@ -10,6 +10,9 @@ module Rusen
     attr_writer :smtp_settings
     attr_writer :exclude_if
 
+    attr_accessor :logger_name
+    attr_accessor :log4r_config_file
+
     # Returns the configured outputs.
     #
     # Default: [:io, :email]
