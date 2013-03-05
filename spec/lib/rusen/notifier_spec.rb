@@ -56,6 +56,20 @@ describe Rusen::Notifier do
       notifier.notify(exception, request, environment, session)
     end
 
+    context 'without request, environment, and session' do
+      it 'builds the notification' do
+        Rusen::Notification.should_receive(:new).with(exception, anything, anything, anything)
+
+        notifier.notify(exception, request, environment, session)
+      end
+
+      it 'sends the notification to every output' do
+        Rusen::Notifiers::DummyNotifier.any_instance.should_receive(:notify).with(notification)
+
+        notifier.notify(exception)
+      end
+    end
+
   end
 
 end
