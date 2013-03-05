@@ -29,7 +29,7 @@ module Rusen
     # @param [Hash<Object, Object>] request The request params
     # @param [Hash<Object, Object>] environment The environment status.
     # @param [Hash<Object, Object>] session The session status.
-    def notify(exception, request = nil, environment = nil, session = nil)
+    def notify(exception, request = {}, environment = {}, session = {})
       begin
         notification = Notification.new(exception, request, environment, session)
 
