@@ -1,7 +1,9 @@
+# -*- encoding: utf-8 -*-
+require File.expand_path('../lib/rusen/version', __FILE__)
+
 Gem::Specification.new do |s|
   s.name            = 'rusen'
-  s.version         = '0.0.2'
-  s.date            = '2012-01-25'
+  s.version         = Rusen::VERSION
   s.platform        = Gem::Platform::RUBY
   s.authors         = ['Adrian Gomez']
   s.summary         = 'RUby Simple Exception Notification'
@@ -9,10 +11,18 @@ Gem::Specification.new do |s|
                        simple exception notification for ruby.'
   s.email           = 'adri4n.gomez@gmail.com'
   s.homepage        = 'https://github.com/Moove-it/rusen'
+  s.rdoc_options = ["--charset=UTF-8"]
+  s.require_paths = ["lib"]
+  s.licenses = ["MIT"]
 
-  s.files           = Dir.glob('{lib}/**/*') + %w(LICENSE README.md CHANGELOG.md)
-
-  s.files           = Dir.glob('{lib}/**/*')
+  s.files         = Dir.glob("{bin,lib}/**/*") + %w(LICENSE README.md CHANGELOG.md Rakefile)
+  s.executables   = s.files.grep(%r{^bin/}) { |f| File.basename(f) }
+  s.test_files    = s.files.grep(%r{^(test|spec|features)/})
+  s.extra_rdoc_files = [
+    "CHANGELOG.md",
+    "LICENSE",
+    "README.md"
+  ]
 
   s.add_dependency('pony')
   s.add_dependency('log4r')
