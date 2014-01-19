@@ -6,6 +6,7 @@
 - Fix gemspec by Peter Boling
 - Add LICENSE (MIT) by Peter Boling
 - Make VERSION accessible from Ruby (compatible with gem-release) by Peter Boling
+- Added .travis.yml by Peter Boling
 
 ## 0.0.2 (2013-01-28)
 - Fix when a notificator can't notify by Adrian Gomez
