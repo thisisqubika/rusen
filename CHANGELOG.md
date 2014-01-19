@@ -6,7 +6,7 @@
 - Fix gemspec by Peter Boling
 - Add LICENSE (MIT) by Peter Boling
 - Make VERSION accessible from Ruby (compatible with gem-release) by Peter Boling
-- Added .travis.yml by Peter Boling
+- Added Trvis-CI and Coveralls integration by Peter Boling
 - Added Rakefile by Peter Boling
 - Test against RUby 1.8.7, 1.9.2, 1.9.3, 2.0.0, and jRuby19 by Peter Boling
 
