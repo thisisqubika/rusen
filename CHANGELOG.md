@@ -9,6 +9,8 @@
 - Added Trvis-CI and Coveralls integration by Peter Boling
 - Added Rakefile by Peter Boling
 - Test against RUby 1.8.7, 1.9.2, 1.9.3, 2.0.0, and jRuby19 by Peter Boling
+- Added MailNotifier (for Mail gem) by Peter Boling
+- Made mail and pony gems not explicit dependencies; notifiers are loaded dynamically by Peter Boling
 
 ## 0.0.2 (2013-01-28)
 - Fix when a notificator can't notify by Adrian Gomez
