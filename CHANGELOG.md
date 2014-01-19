@@ -7,6 +7,8 @@
 - Add LICENSE (MIT) by Peter Boling
 - Make VERSION accessible from Ruby (compatible with gem-release) by Peter Boling
 - Added .travis.yml by Peter Boling
+- Added Rakefile by Peter Boling
+- Test against RUby 1.8.7, 1.9.2, 1.9.3, 2.0.0, and jRuby19 by Peter Boling
 
 ## 0.0.2 (2013-01-28)
 - Fix when a notificator can't notify by Adrian Gomez
