@@ -5,6 +5,20 @@ The Ruby Simple Exception Notification (a.k.a Rusen) gem provides a simple way f
 
 The notification includes information about the current request, session, environment and also gives a backtrace of the exception.
 
+| Project                 |  Rusen   |
+|------------------------ | ----------------- |
+| gem name                |  rusen   |
+| license                 |  MIT              |
+| moldiness               |  [![Maintainer Status](http://stillmaintained.com/Moove-it/rusen.png)](http://stillmaintained.com/Moove-it/rusen) |
+| version                 |  [![Gem Version](https://badge.fury.io/rb/rusen.png)](http://badge.fury.io/rb/rusen) |
+| dependencies            |  [![Dependency Status](https://gemnasium.com/Moove-it/rusen.png)](https://gemnasium.com/Moove-it/rusen) |
+| code quality            |  [![Code Climate](https://codeclimate.com/github/Moove-it/rusen.png)](https://codeclimate.com/github/Moove-it/rusen) |
+| continuous integration  |  [![Build Status](https://secure.travis-ci.org/Moove-it/rusen.png?branch=master)](https://travis-ci.org/Moove-it/rusen) |
+| test coverage           |  [![Coverage Status](https://coveralls.io/repos/Moove-it/rusen/badge.png)](https://coveralls.io/r/Moove-it/rusen) |
+| homepage                |  [https://github.com/Moove-it/rusen][homepage] |
+| documentation           |  [http://rdoc.info/github/Moove-it/rusen/frames][documentation] |
+| author                  |  [Adrian Gomez](https://coderbits.com/Moove-it) |
+
 Installation
 ---
 
@@ -161,3 +175,46 @@ log4r_config:
 Extending to more outputs
 ---
 Soon to come!
+
+## Authors
+
+Adrian Gomez is the author of the code, and current maintainer.
+
+## Contributors
+
+See the [Network View](https://github.com/Moove-it/rusen/network) and the [CHANGELOG](https://github.com/Moove-it/rusen/blob/master/CHANGELOG.md)
+
+## Contributing
+
+1. Fork it
+2. Create your feature branch (`git checkout -b my-new-feature`)
+3. Commit your changes (`git commit -am 'Added some feature'`)
+4. Push to the branch (`git push origin my-new-feature`)
+5. Make sure to add tests for it. This is important so I don't break it in a future version unintentionally.
+6. Create new Pull Request
+
+## Versioning
+
+This library aims to adhere to [Semantic Versioning 2.0.0][semver].
+Violations of this scheme should be reported as bugs. Specifically,
+if a minor or patch version is released that breaks backward
+compatibility, a new version should be immediately released that
+restores compatibility. Breaking changes to the public API will
+only be introduced with new major versions.
+
+As a result of this policy, you can (and should) specify a
+dependency on this gem using the [Pessimistic Version Constraint][pvc] with two digits of precision.
+
+For example:
+
+    spec.add_dependency 'rusen', '~> 0.0.2'
+
+## Legal
+
+* MIT License - See LICENSE file in this project
+* Copyright (c) 2013 Adrian Gomez
+
+[semver]: http://semver.org/
+[pvc]: http://docs.rubygems.org/read/chapter/16#page74
+[documentation]: http://rdoc.info/github/Moove-it/rusen/frames
+[homepage]: https://github.com/Moove-it/rusen
