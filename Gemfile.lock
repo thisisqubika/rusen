@@ -8,31 +8,44 @@ PATH
 GEM
   remote: http://rubygems.org/
   specs:
-    diff-lcs (1.1.3)
-    i18n (0.6.4)
+    diff-lcs (1.2.5)
+    docile (1.1.2)
     log4r (1.1.10)
-    mail (2.5.3)
-      i18n (>= 0.4.0)
+    mail (2.5.4)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
-    mime-types (1.21)
-    multi_json (1.5.0)
+    mime-types (1.25.1)
+    multi_json (1.8.4)
     polyglot (0.3.3)
-    pony (1.4)
-      mail (> 2.0)
-    rspec (2.7.0)
-      rspec-core (~> 2.7.0)
-      rspec-expectations (~> 2.7.0)
-      rspec-mocks (~> 2.7.0)
-    rspec-core (2.7.1)
-    rspec-expectations (2.7.0)
-      diff-lcs (~> 1.1.2)
-    rspec-mocks (2.7.0)
-    simplecov (0.7.1)
-      multi_json (~> 1.0)
-      simplecov-html (~> 0.7.1)
-    simplecov-html (0.7.1)
-    treetop (1.4.12)
+    pony (1.6.2)
+      mail (>= 2.0)
+    rake (10.1.1)
+    reek (1.3.6)
+      ruby2ruby (~> 2.0.7)
+      ruby_parser (~> 3.2)
+      sexp_processor
+    roodi (3.3.1)
+      ruby_parser (~> 3.2, >= 3.2.2)
+    rspec (2.14.1)
+      rspec-core (~> 2.14.0)
+      rspec-expectations (~> 2.14.0)
+      rspec-mocks (~> 2.14.0)
+    rspec-core (2.14.7)
+    rspec-expectations (2.14.4)
+      diff-lcs (>= 1.1.3, < 2.0)
+    rspec-mocks (2.14.4)
+    ruby2ruby (2.0.7)
+      ruby_parser (~> 3.1)
+      sexp_processor (~> 4.0)
+    ruby_parser (3.3.0)
+      sexp_processor (~> 4.1)
+    sexp_processor (4.4.1)
+    simplecov (0.8.2)
+      docile (~> 1.1.0)
+      multi_json
+      simplecov-html (~> 0.8.0)
+    simplecov-html (0.8.0)
+    treetop (1.4.15)
       polyglot
       polyglot (>= 0.3.1)
 
@@ -40,6 +53,9 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  rake
+  reek (>= 1.2.8)
+  roodi (>= 2.1.0)
   rspec
   rusen!
   simplecov

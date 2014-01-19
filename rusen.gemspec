@@ -29,4 +29,7 @@ Gem::Specification.new do |s|
 
   s.add_development_dependency('rspec')
   s.add_development_dependency('simplecov')
+  s.add_development_dependency(%q<reek>, [">= 1.2.8"])
+  s.add_development_dependency(%q<roodi>, [">= 2.1.0"])
+  s.add_development_dependency(%q<rake>, [">= 0"])
 end
