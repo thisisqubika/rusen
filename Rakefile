@@ -28,22 +28,22 @@ namespace :test do
   desc 'Test against all supported Rails versions'
   task :all do
     if RUBY_VERSION == '1.8.7'
-      %w( 2.2.x ).each do |rails_version|
+      %w( 2.2.x 2.3.x 3.1.x 3.2.x ).each do |rails_version|
         sh "BUNDLE_GEMFILE='gemfiles/Gemfile.rails-#{rails_version}' bundle --quiet"
         sh "BUNDLE_GEMFILE='gemfiles/Gemfile.rails-#{rails_version}' bundle exec rspec spec"
       end
     elsif RUBY_VERSION == '1.9.2'
-      %w( 2.3.x 3.0.x 3.1.x 3.2.x ).each do |rails_version|
+      %w( 2.3.x 3.1.x 3.2.x ).each do |rails_version|
         sh "BUNDLE_GEMFILE='gemfiles/Gemfile.rails-#{rails_version}' bundle --quiet"
         sh "BUNDLE_GEMFILE='gemfiles/Gemfile.rails-#{rails_version}' bundle exec rspec spec"
       end
     elsif RUBY_VERSION == '1.9.3'
-      %w( 3.2.x 4.0.x ).each do |rails_version|
+      %w( 3.1.x 3.2.x 4.0.x ).each do |rails_version|
         sh "BUNDLE_GEMFILE='gemfiles/Gemfile.rails-#{rails_version}' bundle --quiet"
         sh "BUNDLE_GEMFILE='gemfiles/Gemfile.rails-#{rails_version}' bundle exec rspec spec"
       end
     elsif RUBY_VERSION == '2.0.0'
-      %w( 3.2.x 4.0.x ).each do |rails_version|
+      %w( 3.1.x 3.2.x 4.0.x ).each do |rails_version|
         sh "BUNDLE_GEMFILE='gemfiles/Gemfile.rails-#{rails_version}' bundle --quiet"
         sh "BUNDLE_GEMFILE='gemfiles/Gemfile.rails-#{rails_version}' bundle exec rspec spec"
       end
