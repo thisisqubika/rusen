@@ -15,11 +15,11 @@ module Rusen
 
     # Returns the configured outputs.
     #
-    # Default: [:io, :email]
+    # Default: []
     #
     # @return [Array<Symbol>]
     def outputs
-      @outputs || [:io, :email]
+      @outputs || []
     end
 
     # Returns the notification email prefix.
