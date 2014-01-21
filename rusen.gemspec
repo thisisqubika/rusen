@@ -24,10 +24,13 @@ Gem::Specification.new do |s|
     "README.md"
   ]
 
-  s.add_dependency('pony')
-  s.add_dependency('log4r')
 
+  s.add_development_dependency('log4r')
+  s.add_development_dependency('pony')
+  s.add_development_dependency('mail')
   s.add_development_dependency('rspec')
+  s.add_development_dependency('shoulda', '< 3.6')
+  s.add_development_dependency('shoulda-matchers', '< 1.6')
   s.add_development_dependency('simplecov')
   s.add_development_dependency(%q<reek>, [">= 1.2.8"])
   s.add_development_dependency(%q<roodi>, [">= 2.1.0"])

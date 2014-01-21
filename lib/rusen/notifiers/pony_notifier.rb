@@ -4,10 +4,10 @@ require 'erb'
 module Rusen
   module Notifiers
 
-    class EmailNotifier
+    class PonyNotifier
 
       def self.identification_symbol
-        :email
+        :pony
       end
 
       def initialize(settings)
@@ -20,7 +20,7 @@ module Rusen
 
           Pony.mail(email_options.merge({:body => build_body}))
 
-        # We need to ignore all the exceptions thrown by EmailNotifier#notify.
+        # We need to ignore all the exceptions thrown by PonyNotifier#notify.
         rescue Exception => e
           warn("Rusen: #{e.class}: #{e.message} prevented the notification email from being sent.")
           puts e.backtrace
@@ -56,4 +56,5 @@ module Rusen
     end
 
   end
+
 end

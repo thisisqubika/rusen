@@ -1,7 +1,5 @@
+require 'rusen/notifiers'
 require 'rusen/notification'
-require 'rusen/notifiers/io_notifier'
-require 'rusen/notifiers/email_notifier'
-require 'rusen/notifiers/log4r_notifier'
 
 module Rusen
 
@@ -11,11 +9,20 @@ module Rusen
       @settings = settings
 
       @notifiers = []
-      Notifiers.constants.each do |constant|
-        klass = Notifiers.const_get(constant)
-        if  @settings.outputs.include?(klass.identification_symbol)
-          register(klass)
+      @settings.outputs.each do |ident|
+        ident = Notifiers.check_deprecation(ident)
+        # For notifiers bundled in this gem
+        klass = Notifiers.load_klass(ident)
+        if klass.nil?
+          Notifiers.constants.each do |constant|
+            klass = Notifiers.const_get(constant)
+            next unless klass.is_a?(Class)
+            break if ident == klass.identification_symbol
+            klass = nil
+          end
         end
+        raise "Unable to load Output Notifier identified by: #{ident}" if klass.nil? || !klass.is_a?(Class)
+        register(klass)
       end
     end
 

@@ -1,20 +1,20 @@
 require 'spec_helper'
 
 require 'rusen'
-require 'rusen/notifiers/email_notifier'
+require 'rusen/notifiers/pony_notifier'
 
-describe Rusen::Notifiers::EmailNotifier do
+describe Rusen::Notifiers::PonyNotifier do
 
   describe '.identification_symbol' do
 
-    it 'returns :email' do
-      Rusen::Notifiers::EmailNotifier.identification_symbol.should eq(:email)
+    it 'returns :pony' do
+      Rusen::Notifiers::PonyNotifier.identification_symbol.should eq(:pony)
     end
 
   end
 
   let(:settings) { Rusen::Settings.new }
-  let(:notifier) { Rusen::Notifiers::EmailNotifier.new(settings) }
+  let(:notifier) { Rusen::Notifiers::PonyNotifier.new(settings) }
   let(:notification) { Rusen::Notification.new(Exception.new) }
 
   describe '#notify' do
