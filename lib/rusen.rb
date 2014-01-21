@@ -1,3 +1,4 @@
+require 'rusen/version'
 require 'rusen/settings'
 require 'rusen/notifier'
 
