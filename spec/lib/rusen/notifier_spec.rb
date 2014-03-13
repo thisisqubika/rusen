@@ -2,7 +2,7 @@ require 'spec_helper'
 
 require 'rusen/notifier'
 require 'rusen/settings'
-require 'rusen/notification'
+require 'rusen/exception_context'
 
 module Rusen
   module Notifiers
@@ -16,7 +16,7 @@ module Rusen
       def initialize(settings)
       end
 
-      def notify(notification)
+      def notify(exception_context)
       end
 
     end
@@ -36,35 +36,39 @@ describe Rusen::Notifier do
   describe '#notify' do
 
     let(:exception) { double(:exception) }
+    let(:custom_data) { double(:custom_data) }
     let(:request) { double(:request) }
     let(:environment) { double(:environment) }
     let(:session) { double(:session) }
 
-    let(:notification) { double(:notification) }
+    let(:exception_context) { double(:exception_context) }
 
-    before { Rusen::Notification.stub(:new).and_return(notification) }
+    before { Rusen::ExceptionContext.stub(:new).and_return(exception_context) }
 
-    it 'builds the notification' do
-      Rusen::Notification.should_receive(:new).with(exception, request, environment, session)
+    it 'builds the exception_context' do
+      exception.stub(:message)
+      exception.stub(:class)
 
-      notifier.notify(exception, request, environment, session)
+      Rusen::ExceptionContext.should_receive(:new).with(exception, request, environment, session, custom_data, anything)
+
+      notifier.notify(exception, request, environment, session, custom_data)
     end
 
-    it 'sends the notification to every output' do
-      Rusen::Notifiers::DummyNotifier.any_instance.should_receive(:notify).with(notification)
+    it 'sends the exception_context to every output' do
+      Rusen::Notifiers::DummyNotifier.any_instance.should_receive(:notify).with(exception_context)
 
-      notifier.notify(exception, request, environment, session)
+      notifier.notify(exception, request, environment, session, custom_data)
     end
 
     context 'without request, environment, and session' do
-      it 'builds the notification' do
-        Rusen::Notification.should_receive(:new).with(exception, anything, anything, anything)
+      it 'builds the exception_context' do
+        Rusen::ExceptionContext.should_receive(:new).with(exception, anything, anything, anything, anything, anything)
 
-        notifier.notify(exception, request, environment, session)
+        notifier.notify(exception, request, environment, session, custom_data)
       end
 
-      it 'sends the notification to every output' do
-        Rusen::Notifiers::DummyNotifier.any_instance.should_receive(:notify).with(notification)
+      it 'sends the exception_context to every output' do
+        Rusen::Notifiers::DummyNotifier.any_instance.should_receive(:notify).with(exception_context)
 
         notifier.notify(exception)
       end

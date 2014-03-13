@@ -24,7 +24,7 @@ describe Rusen::Notifiers::MailNotifier do
     end
   }
   let(:notifier) { Rusen::Notifiers::MailNotifier.new(settings) }
-  let(:notification) { Rusen::Notification.new(Exception.new) }
+  let(:notification) { Rusen::ExceptionContext.new(Exception.new) }
 
   describe '#notify' do
 

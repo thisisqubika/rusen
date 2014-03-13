@@ -23,7 +23,7 @@ describe Rusen::Notifiers::IONotifier do
     e = Exception.new
     e.set_backtrace([])
 
-    Rusen::Notification.new(e)
+    Rusen::ExceptionContext.new(e, {:asdf => 'qwer'}, {:asdf => 'qwer'}, {:asdf => 'qwer'}, {:asdf => 'qwer'}, 'this is a message')
   end
 
   describe '#notify' do
@@ -78,7 +78,7 @@ describe Rusen::Notifiers::IONotifier do
         notifier.notify(notification)
 
         output.rewind
-        output.read.should match('Request:')
+        output.read.should match('Redacted Params:')
       end
 
       it 'prints request hash keys' do
@@ -102,11 +102,11 @@ describe Rusen::Notifiers::IONotifier do
         settings.sections -= [:request]
       end
 
-      it 'does not prints the request section title' do
+      it 'does not print the request section title' do
         notifier.notify(notification)
 
         output.rewind
-        output.read.should_not match('Request:')
+        output.read.should_not match('Redacted Params:')
       end
     end
 
@@ -119,7 +119,7 @@ describe Rusen::Notifiers::IONotifier do
         notifier.notify(notification)
 
         output.rewind
-        output.read.should match('Session:')
+        output.read.should match('Response Headers:')
       end
 
       it 'prints session hash keys' do
@@ -147,7 +147,7 @@ describe Rusen::Notifiers::IONotifier do
         notifier.notify(notification)
 
         output.rewind
-        output.read.should_not match('Session:')
+        output.read.should_not match('Response Headers:')
       end
     end
 

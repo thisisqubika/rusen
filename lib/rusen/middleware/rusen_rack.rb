@@ -1,6 +1,6 @@
 require 'rusen/settings'
 require 'rusen/notifier'
-require 'rusen/notification'
+require 'rusen/exception_context'
 
 module Rusen
   module Middleware

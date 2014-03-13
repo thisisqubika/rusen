@@ -35,7 +35,7 @@ module Rusen
 
         # We need to ignore all the exceptions thrown by MailNotifier#notify.
         rescue Exception => e
-          warn("Rusen: #{e.class}: #{e.message} prevented the notification email from being sent.")
+          warn("Rusen: #{e.class}: #{e.message} prevented the notification email from being sent. Called from: #{caller.first}")
           puts e.backtrace
         end
       end
@@ -56,9 +56,9 @@ module Rusen
       end
 
       def build_body
-        template_path = File.expand_path('../../templates/email_template.html.erb', __FILE__)
+        template_path = File.expand_path('../../templates/email_template.html.erb', __FILE__).untaint
 
-        template = File.open(template_path).read
+        template = File.open(template_path).read.untaint
         rhtml = ERB.new(template)
         rhtml.result(binding)
       end
