@@ -2,6 +2,10 @@ module Rusen
 
   class Settings
 
+    class << self
+      attr_accessor :config, :notifier
+    end
+
     attr_writer :outputs
     attr_writer :email_prefix
     attr_writer :sender_address
@@ -79,3 +83,4 @@ module Rusen
   end
 
 end
+

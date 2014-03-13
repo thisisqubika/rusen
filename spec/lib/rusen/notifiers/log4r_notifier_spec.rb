@@ -21,7 +21,7 @@ describe Rusen::Notifiers::Log4rNotifier do
     e = Exception.new
     e.set_backtrace([])
 
-    Rusen::Notification.new(e)
+    Rusen::ExceptionContext.new(e)
   end
 
   describe '#notify' do

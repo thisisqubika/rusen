@@ -1,4 +1,21 @@
+
 *******************************************************************************
+Error Class:    <%= @notification.exception.class %>
+Error Message:  <%= @notification.exception.message %>
+*******************************************************************************
+<% if @settings.sections.include?(:message) && !@notification.message.empty? %>
+-------------------------------
+Message:
+-------------------------------
+<%= @notification.message %>
+<% end %>
+<% if @settings.sections.include?(:custom_data) && !@notification.custom_data.empty? %>
+-------------------------------
+Custom Data:
+-------------------------------
+<% @notification.custom_data.each do |k, v| %>
+<%= k.to_s + ":\t\t\t" + v.inspect %><% end %>
+<% end %>
 <% if @settings.sections.include?(:backtrace) %>
 -------------------------------
 Backtrace:
@@ -6,29 +23,25 @@ Backtrace:
 <%= @notification.exception.class %>: <%= @notification.exception.message%><% @notification.exception.backtrace.each do |backtrace_step| %>
 <%= "\t" + backtrace_step %><% end %>
 <% end %>
-
-<% if @settings.sections.include?(:request) %>
+<% if @settings.sections.include?(:request) && !@notification.request.empty? %>
 -------------------------------
 Request:
 -------------------------------
 <% @notification.request.each do |k, v| %>
-<%= k.to_s + ":\t\t\t" + v.to_s %><% end %>
+<%= k.to_s + ":\t\t\t" + v.inspect %><% end %>
 <% end %>
-
-<% if @settings.sections.include?(:session) %>
+<% if @settings.sections.include?(:session) && !@notification.session.empty? %>
 -------------------------------
 Session:
 -------------------------------
 <% @notification.session.each do |k, v| %>
-<%= k.to_s + ":\t\t\t" + v.to_s %><% end %>
+<%= k.to_s + ":\t\t\t" + v.inspect %><% end %>
 <% end %>
-
-<% if @settings.sections.include?(:environment) %>
+<% if @settings.sections.include?(:environment) && !@notification.environment.empty? %>
 -------------------------------
 Environment:
 -------------------------------
 <% @notification.environment.each do |k, v| %>
-<%= k.to_s + ":\t\t\t" + v.to_s %><% end %>
+<%= k.to_s + ":\t\t\t" + v.inspect %><% end %>
 <% end %>
-
 *******************************************************************************

@@ -1,9 +1,20 @@
+
+*******************************************************************************
+Error Class:    <%= @notification.exception.class %>
+Error Message:  <%= @notification.exception.message %>
+*******************************************************************************
+<% if @settings.sections.include?(:message) && !@notification.message.empty? %>
+-------------------------------
+Custom Message:
+-------------------------------
+<%= @notification.message %>
+<% end %>
 *******************************************************************************
 <% if @settings.sections.include?(:backtrace) %>
 -------------------------------
 Backtrace:
 -------------------------------
-<%= @notification.exception.class %>: <%= @notification.exception.message%><% @notification.exception.backtrace.each do |backtrace_step| %>
+<% @notification.exception.backtrace.each do |backtrace_step| %>
 <%= "\t" + backtrace_step %><% end %>
 <% end %>
 

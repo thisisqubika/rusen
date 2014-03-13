@@ -15,7 +15,7 @@ describe Rusen::Notifiers::PonyNotifier do
 
   let(:settings) { Rusen::Settings.new }
   let(:notifier) { Rusen::Notifiers::PonyNotifier.new(settings) }
-  let(:notification) { Rusen::Notification.new(Exception.new) }
+  let(:notification) { Rusen::ExceptionContext.new(Exception.new) }
 
   describe '#notify' do
 

@@ -35,4 +35,8 @@ Gem::Specification.new do |s|
   s.add_development_dependency(%q<reek>, [">= 1.2.8"])
   s.add_development_dependency(%q<roodi>, [">= 2.1.0"])
   s.add_development_dependency(%q<rake>, [">= 0"])
+
+  # For Test Code Coverage
+  s.add_development_dependency('coveralls') unless RUBY_VERSION == '1.8.7'
+
 end

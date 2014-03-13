@@ -15,9 +15,9 @@ module Rusen
       def initialize(settings)
         @settings = settings
 
-        load_config(@settings.log4r_config_file)
+        load_config(@settings.log4r_config_file.untaint)
 
-        @logger = logger_instance(@settings.logger_name)
+        @logger = logger_instance(@settings.logger_name.untaint)
       end
 
       def notify(notification)
@@ -26,16 +26,17 @@ module Rusen
           @logger.error { build_content }
         # We need to ignore all the exceptions thrown by Log4rNotifier#notify.
         rescue Exception => e
-          warn("Rusen: #{e.message} prevented the log4r notifier from login the error.")
+          warn("Rusen: #{e.class} #{e.message} prevented the log4r notifier from logging the error. Called from: #{caller.first}")
+          puts e.backtrace
         end
       end
 
       private
 
       def build_content
-        template_path = File.expand_path('../../templates/log4r_template.txt.erb', __FILE__)
+        template_path = File.expand_path('../../templates/log4r_template.txt.erb', __FILE__).untaint
 
-        template = File.open(template_path).read
+        template = File.open(template_path).read.untaint
         rhtml = ERB.new(template)
         rhtml.result(binding)
       end

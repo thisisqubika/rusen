@@ -1,4 +1,46 @@
-<%= @notification.exception.class %>: <%= @notification.exception.message %>
+<table style="border-collapse: collapse; border-spacing: 0; width: 100%; border: double; margin-bottom: 10px;">
+  <thead style="background-color: #EFEFEF; font-size: 10pt; font-weight: bold;">
+  <tr>
+    <td><h4>ERROR:</h4></td>
+    <td></td>
+  </tr>
+  </thead>
+  <tbody style="font-size: 11pt;">
+    <tr>
+      <td style="border: solid 1px #000000; margin: 0; padding: 4pt 6pt;">Error Class</td>
+      <td style="border: solid 1px #000000; margin: 0; padding: 4pt 6pt;"><%= @notification.exception.class %></td>
+    </tr>
+    <tr>
+      <td style="border: solid 1px #000000; margin: 0; padding: 4pt 6pt;">Error Message</td>
+      <td style="border: solid 1px #000000; margin: 0; padding: 4pt 6pt;"><%= @notification.exception.message %></td>
+    </tr>
+    <% if @settings.sections.include?(:custom_data) %>
+      <tr>
+        <td style="border: solid 1px #000000; margin: 0; padding: 4pt 6pt;">Custom Message</td>
+        <td style="border: solid 1px #000000; margin: 0; padding: 4pt 6pt;"><%= @notification.message %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<% if @settings.sections.include?(:custom_data) %>
+  <table style="border-collapse: collapse; border-spacing: 0; width: 100%; border: double; margin-bottom: 10px;">
+    <thead style="background-color: #EFEFEF; font-size: 10pt; font-weight: bold;">
+    <tr>
+      <td><h4>Custom Data:</h4></td>
+      <td></td>
+    </tr>
+    </thead>
+    <tbody style="font-size: 11pt;">
+    <% @notification.custom_data.each do |k, v| %>
+      <tr>
+        <td style="border: solid 1px #000000; margin: 0; padding: 4pt 6pt;"><%= k %></td>
+        <td style="border: solid 1px #000000; margin: 0; padding: 4pt 6pt;"><%= v.inspect %></td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+<% end %>
 
 <% if @settings.sections.include?(:backtrace) %>
 <table style="border-collapse: collapse; border-spacing: 0; width: 100%; border: double; margin-bottom: 10px;">
@@ -30,7 +72,7 @@
   <% @notification.request.each do |k, v| %>
     <tr>
       <td style="border: solid 1px #000000; margin: 0; padding: 4pt 6pt;"><%= k %></td>
-      <td style="border: solid 1px #000000; margin: 0; padding: 4pt 6pt;"><%= v %></td>
+      <td style="border: solid 1px #000000; margin: 0; padding: 4pt 6pt;"><%= v.inspect %></td>
     </tr>
   <% end %>
   </tbody>
@@ -49,7 +91,7 @@
   <% @notification.session.each do |k, v| %>
     <tr>
       <td style="border: solid 1px #000000; margin: 0; padding: 4pt 6pt;"><%= k %></td>
-      <td style="border: solid 1px #000000; margin: 0; padding: 4pt 6pt;"><%= v %></td>
+      <td style="border: solid 1px #000000; margin: 0; padding: 4pt 6pt;"><%= v.inspect %></td>
     </tr>
   <% end %>
   </tbody>
@@ -69,7 +111,7 @@
   <% @notification.environment.each do |k, v| %>
     <tr>
       <td style="border: solid 1px #000000; margin: 0; padding: 4pt 6pt;"><%= k %></td>
-      <td style="border: solid 1px #000000; margin: 0; padding: 4pt 6pt;"><%= v %></td>
+      <td style="border: solid 1px #000000; margin: 0; padding: 4pt 6pt;"><%= v.inspect %></td>
     </tr>
   <% end %>
   </tbody>
