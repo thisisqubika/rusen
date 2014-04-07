@@ -10,15 +10,19 @@ module Rusen
       def initialize(app, settings = {})
         @app = app
 
-        @rusen_settings = Settings.new
+        if settings.is_a?(::Rusen::Settings)
+          @rusen_settings = settings
+        else
+          @rusen_settings = Settings.new
 
-        @rusen_settings.outputs = settings[:outputs]
-        @rusen_settings.sections = settings[:sections]
-        @rusen_settings.email_prefix = settings[:email_prefix]
-        @rusen_settings.sender_address = settings[:sender_address]
-        @rusen_settings.exception_recipients = settings[:exception_recipients]
-        @rusen_settings.smtp_settings = settings[:smtp_settings]
-        @rusen_settings.exclude_if = settings[:exclude_if]
+          @rusen_settings.outputs = settings[:outputs]
+          @rusen_settings.sections = settings[:sections]
+          @rusen_settings.email_prefix = settings[:email_prefix]
+          @rusen_settings.sender_address = settings[:sender_address]
+          @rusen_settings.exception_recipients = settings[:exception_recipients]
+          @rusen_settings.smtp_settings = settings[:smtp_settings]
+          @rusen_settings.exclude_if = settings[:exclude_if]
+        end
 
         @notifier = Notifier.new(@rusen_settings)
       end

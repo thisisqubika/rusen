@@ -12,6 +12,14 @@ module Rusen
 
       def initialize(settings)
         @settings = settings
+        
+        if @settings && @settings.smtp_settings
+          smtp_settings = @settings.smtp_settings
+
+          Mail.defaults do
+            delivery_method :smtp, smtp_settings
+          end
+        end
       end
 
       def notify(notification)

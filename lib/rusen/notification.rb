@@ -12,6 +12,14 @@ module Rusen
       @session = session
     end
 
+    def session
+      if @session.respond_to?(:each)
+        @session
+      else
+        @session.to_hash
+      end
+    end
+
   end
 
 end
