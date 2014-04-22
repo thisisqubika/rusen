@@ -11,9 +11,9 @@ module Rusen
       end
 
       def initialize(settings)
-        @settings = settings
-        
-        if @settings && @settings.smtp_settings
+        @settings = settings.dup
+
+        if @settings && @settings.smtp_settings.any?
           smtp_settings = @settings.smtp_settings
 
           Mail.defaults do

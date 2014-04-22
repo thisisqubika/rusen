@@ -11,7 +11,7 @@ module Rusen
       end
 
       def initialize(settings)
-        @settings = settings
+        @settings = settings.dup
       end
 
       def notify(notification)
@@ -32,7 +32,7 @@ module Rusen
       def email_options
         {
           :to => @settings.exception_recipients,
-          :via => :smtp,
+          :via => @settings.email_via,
           :charset => 'utf-8',
           :from => @settings.sender_address,
           :headers => { 'Content-Type' => 'text/html' },
