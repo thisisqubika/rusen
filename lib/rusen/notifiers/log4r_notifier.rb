@@ -1,6 +1,15 @@
-require 'log4r'
-require 'log4r/yamlconfigurator'
 require_relative 'base_notifier'
+
+begin
+  require 'log4r'
+  require 'log4r/yamlconfigurator'
+rescue LoadError
+  puts <<-MESSAGE
+  [Rusen Error] To use log4r notifier add this to your Gemfile:
+    gem 'log4r'
+  MESSAGE
+  raise
+end
 
 module Rusen
   module Notifiers

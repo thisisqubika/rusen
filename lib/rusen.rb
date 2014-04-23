@@ -5,7 +5,6 @@ require 'rusen/notifier'
 module Rusen
 
   @settings = Settings.new
-  @notifier = Notifier.new(@settings)
 
   # Returns the global settings for rusen.
   #
@@ -18,7 +17,11 @@ module Rusen
 
   # (see Rusen::Notifier#notify)
   def self.notify(exception, request = nil, environment = nil, session = nil)
-    @notifier.notify(exception, request, environment, session)
+    notifier.notify(exception, request, environment, session)
+  end
+
+  def self.notifier
+    @notifier || Notifier.new(@settings)
   end
 
 end
