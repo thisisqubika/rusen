@@ -10,7 +10,7 @@ module Rusen
       end
 
       def initialize(settings, output = STDOUT)
-        @settings = settings
+        @settings = settings.dup
         @output = output
       end
 

@@ -13,7 +13,7 @@ module Rusen
       end
 
       def initialize(settings)
-        @settings = settings
+        @settings = settings.dup
 
         load_config(@settings.log4r_config_file)
 

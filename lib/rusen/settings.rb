@@ -4,6 +4,7 @@ module Rusen
 
     attr_writer :outputs
     attr_writer :email_prefix
+    attr_writer :email_via
     attr_writer :sender_address
     attr_writer :exception_recipients
     attr_writer :sections
@@ -29,6 +30,15 @@ module Rusen
     # @return [String]
     def email_prefix
       @email_prefix || '[Exception] '
+    end
+
+    # Returns the email for email notifications.
+    #
+    # Default: :smtp
+    #
+    # @return [Symbol]
+    def email_via
+      @email_via || :smtp
     end
 
     # Returns the notification email sender.

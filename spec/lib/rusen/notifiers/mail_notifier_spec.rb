@@ -3,11 +3,13 @@ require 'spec_helper'
 require 'rusen'
 require 'rusen/notifiers/mail_notifier'
 
-Mail.defaults do
-  delivery_method :test
-end
-
 describe Rusen::Notifiers::MailNotifier do
+
+  before(:all) do
+    Mail.defaults do
+      delivery_method :test
+    end
+  end
 
   describe '.identification_symbol' do
 
