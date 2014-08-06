@@ -11,6 +11,8 @@ module Rusen
     attr_writer :smtp_settings
     attr_writer :exclude_if
 
+    attr_writer :filter_parameters
+
     attr_accessor :logger_name
     attr_accessor :log4r_config_file
 
@@ -84,6 +86,24 @@ module Rusen
     # @return [Block]
     def exclude_if
       @exclude_if || lambda { |exception| false }
+    end
+
+    # Returns the parameters we need to filter from being sent on
+    #   the notification, this will be used to not send sensitive
+    #   data to the developers credit card numbers for instance.
+    #
+    # @note
+    #   If this is used with a rails app we use the config filter
+    #   parameters from there if the filter parameters are not
+    #   defined.
+    #
+    # @return [Array]
+    def filter_parameters
+      if @filter_parameter
+        @filter_parameters || []
+      else
+        defined?(Rails) && Rails.application.config.filter_parameters
+      end
     end
 
   end

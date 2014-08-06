@@ -5,7 +5,7 @@ Gem::Specification.new do |s|
   s.name            = 'rusen'
   s.version         = Rusen::VERSION
   s.platform        = Gem::Platform::RUBY
-  s.authors         = ['Adrian Gomez']
+  s.authors         = ['Adrian Gomez', 'Pablo Ifran']
   s.summary         = 'RUby Simple Exception Notification'
   s.description     = 'RUby Simple Exception Notification (a.k.a. rusen) as it names indicates is a
                        simple exception notification for ruby.'

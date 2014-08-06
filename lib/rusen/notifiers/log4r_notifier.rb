@@ -1,19 +1,18 @@
-require 'erb'
 require 'log4r'
 require 'log4r/yamlconfigurator'
+require_relative 'base_notifier'
 
 module Rusen
   module Notifiers
 
-    class Log4rNotifier
-
+    class Log4rNotifier < BaseNotifier
 
       def self.identification_symbol
         :log4r
       end
 
       def initialize(settings)
-        @settings = settings.dup
+        super(settings)
 
         load_config(@settings.log4r_config_file)
 
@@ -22,12 +21,12 @@ module Rusen
 
       def notify(notification)
         @notification = notification
-        begin
-          @logger.error { build_content }
+        @sessions     = get_sessions(@notification)
+
         # We need to ignore all the exceptions thrown by Log4rNotifier#notify.
-        rescue Exception => e
-          warn("Rusen: #{e.message} prevented the log4r notifier from login the error.")
-        end
+        @logger.error { build_content }
+      rescue Exception => exception
+        handle_notification_exception(exception)
       end
 
       private
@@ -36,7 +35,7 @@ module Rusen
         template_path = File.expand_path('../../templates/log4r_template.txt.erb', __FILE__)
 
         template = File.open(template_path).read
-        rhtml = ERB.new(template)
+        rhtml = ERB.new(template, nil, '-')
         rhtml.result(binding)
       end
 

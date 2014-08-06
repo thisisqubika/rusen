@@ -1,30 +1,23 @@
 require 'pony'
-require 'erb'
+require_relative 'base_notifier'
 
 module Rusen
   module Notifiers
 
-    class PonyNotifier
+    class PonyNotifier < BaseNotifier
 
       def self.identification_symbol
         :pony
       end
 
-      def initialize(settings)
-        @settings = settings.dup
-      end
-
       def notify(notification)
-        begin
-          @notification = notification
-
-          Pony.mail(email_options.merge({:body => build_body}))
+        @notification = notification
+        @sessions     = get_sessions(@notification)
 
         # We need to ignore all the exceptions thrown by PonyNotifier#notify.
-        rescue Exception => e
-          warn("Rusen: #{e.class}: #{e.message} prevented the notification email from being sent.")
-          puts e.backtrace
-        end
+        Pony.mail(email_options.merge({:body => build_body}))
+      rescue Exception => exception
+        handle_notification_exception(exception)
       end
 
       private
@@ -49,7 +42,7 @@ module Rusen
         template_path = File.expand_path('../../templates/email_template.html.erb', __FILE__)
 
         template = File.open(template_path).read
-        rhtml = ERB.new(template)
+        rhtml = ERB.new(template, nil, '-')
         rhtml.result(binding)
       end
 

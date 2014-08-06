@@ -1,77 +1,31 @@
 <%= @notification.exception.class %>: <%= @notification.exception.message %>
 
-<% if @settings.sections.include?(:backtrace) %>
-<table style="border-collapse: collapse; border-spacing: 0; width: 100%; border: double; margin-bottom: 10px;">
-  <thead style="background-color: #EFEFEF; font-size: 10pt; font-weight: bold;">
-  <tr>
-    <td><h4>Backtrace:</h4></td>
-    <td></td>
-  </tr>
-  </thead>
-  <tbody style="font-size: 11pt;">
-  <%  @notification.exception.backtrace.each do |backtrace_step| %>
-    <tr>
-      <td style="border: solid 1px #000000; margin: 0; padding: 4pt 6pt;"><%= backtrace_step %></td>
-    </tr>
-  <% end %>
-  </tbody>
-</table>
-<% end %>
-
-<% if @settings.sections.include?(:request) %>
-<table style="border-collapse: collapse; border-spacing: 0; width: 100%; border: double; margin-bottom: 10px;">
-  <thead style="background-color: #EFEFEF; font-size: 10pt; font-weight: bold;">
-  <tr>
-    <td><h4>Request:</h4></td>
-    <td></td>
-  </tr>
-  </thead>
-  <tbody style="font-size: 11pt;">
-  <% @notification.request.each do |k, v| %>
-    <tr>
-      <td style="border: solid 1px #000000; margin: 0; padding: 4pt 6pt;"><%= k %></td>
-      <td style="border: solid 1px #000000; margin: 0; padding: 4pt 6pt;"><%= v %></td>
-    </tr>
-  <% end %>
-  </tbody>
-</table>
-<% end %>
-
-<% if @settings.sections.include?(:session) %>
-<table style="border-collapse: collapse; border-spacing: 0; width: 100%; border: double; margin-bottom: 10px;">
-  <thead style="background-color: #EFEFEF; font-size: 10pt; font-weight: bold;">
-  <tr>
-    <td><h4>Session:</h4></td>
-    <td></td>
-  </tr>
-  </thead>
-  <tbody style="font-size: 11pt;">
-  <% @notification.session.each do |k, v| %>
-    <tr>
-      <td style="border: solid 1px #000000; margin: 0; padding: 4pt 6pt;"><%= k %></td>
-      <td style="border: solid 1px #000000; margin: 0; padding: 4pt 6pt;"><%= v %></td>
-    </tr>
-  <% end %>
-  </tbody>
-</table>
-<% end %>
-
-
-<% if @settings.sections.include?(:environment) %>
-<table style="border-collapse: collapse; border-spacing: 0; width: 100%; border: double; margin-bottom: 10px;">
-  <thead style="background-color: #EFEFEF; font-size: 10pt; font-weight: bold;">
-  <tr>
-    <td><h4>Environment:</h4></td>
-    <td></td>
-  </tr>
-  </thead>
-  <tbody style="font-size: 11pt;">
-  <% @notification.environment.each do |k, v| %>
-    <tr>
-      <td style="border: solid 1px #000000; margin: 0; padding: 4pt 6pt;"><%= k %></td>
-      <td style="border: solid 1px #000000; margin: 0; padding: 4pt 6pt;"><%= v %></td>
-    </tr>
-  <% end %>
-  </tbody>
-</table>
+<% @sessions.each do |name, session| %>
+  <table style="border-collapse: collapse; border-spacing: 0; width: 100%; border: double; margin-bottom: 10px;">
+    <thead style="background-color: #EFEFEF; font-size: 10pt; font-weight: bold;">
+      <tr>
+        <td>
+          <h4><%= name %>:</h4>
+        </td>
+        <td></td>
+      </tr>
+    </thead>
+    <tbody style="font-size: 11pt;">
+      <% if session.is_a?(Hash) %>
+        <% session.each do |key, value| %>
+          <tr>
+            <td style="border: solid 1px #000000; margin: 0; padding: 4pt 6pt;"><%= key %></td>
+            <td style="border: solid 1px #000000; margin: 0; padding: 4pt 6pt;"><%= value %></td>
+          </tr>
+        <% end %>
+      <% else %>
+        <% session.each do |session_step| %>
+          <tr>
+            <td style="border: solid 1px #000000; margin: 0; padding: 4pt 6pt;"><%= session_step %></td>
+            <td></td>
+          </tr>
+        <% end %>
+      <% end %>
+    </tbody>
+  </table>
 <% end %>
