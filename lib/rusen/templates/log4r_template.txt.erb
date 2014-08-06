@@ -1,34 +1,19 @@
 *******************************************************************************
-<% if @settings.sections.include?(:backtrace) %>
--------------------------------
-Backtrace:
--------------------------------
-<%= @notification.exception.class %>: <%= @notification.exception.message%><% @notification.exception.backtrace.each do |backtrace_step| %>
-<%= "\t" + backtrace_step %><% end %>
-<% end %>
+<%= @notification.exception.class %>: <%= @notification.exception.message %>
 
-<% if @settings.sections.include?(:request) %>
+<% @sessions.each do |name, session| %>
 -------------------------------
-Request:
+<%= name %>:
 -------------------------------
-<% @notification.request.each do |k, v| %>
-<%= k.to_s + ":\t\t\t" + v.to_s %><% end %>
-<% end %>
-
-<% if @settings.sections.include?(:session) %>
--------------------------------
-Session:
--------------------------------
-<% @notification.session.each do |k, v| %>
-<%= k.to_s + ":\t\t\t" + v.to_s %><% end %>
-<% end %>
-
-<% if @settings.sections.include?(:environment) %>
--------------------------------
-Environment:
--------------------------------
-<% @notification.environment.each do |k, v| %>
-<%= k.to_s + ":\t\t\t" + v.to_s %><% end %>
-<% end %>
+  <% if session.is_a?(Hash) -%>
+    <% session.each do |key, value| -%>
+<%= key.to_s + ":\t\t\t" + value.to_s -%>
+    <% end -%>
+  <% else -%>
+    <% session.each do |session_step| -%>
+<%= "\t" + session_step %>
+    <% end -%>
+  <% end -%>
+<% end -%>
 
 *******************************************************************************

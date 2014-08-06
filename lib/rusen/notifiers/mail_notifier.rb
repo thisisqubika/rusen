@@ -1,17 +1,17 @@
 require 'mail'
-require 'erb'
+require_relative 'base_notifier'
 
 module Rusen
   module Notifiers
 
-    class MailNotifier
+    class MailNotifier < BaseNotifier
 
       def self.identification_symbol
         :mail
       end
 
       def initialize(settings)
-        @settings = settings.dup
+        super(settings)
 
         if @settings && @settings.smtp_settings.any?
           smtp_settings = @settings.smtp_settings
@@ -23,29 +23,28 @@ module Rusen
       end
 
       def notify(notification)
-        begin
-          @notification = notification
-          options = email_options.dup
-          options.merge!({:body => build_body})
-          mail = Mail.new do
-            from      options[:from]
-            to        options[:to]
-            reply_to  options[:reply_to]
-            cc        options[:cc]
-            bcc       options[:bcc]
-            subject   options[:subject]
-            html_part do
-              content_type "text/html; charset=#{options[:charset]}"
-              body    options[:body]
-            end
+        @notification = notification
+        @sessions     = get_sessions(@notification)
+
+        options = email_options.dup
+        options.merge!({:body => build_body})
+        mail = Mail.new do
+          from      options[:from]
+          to        options[:to]
+          reply_to  options[:reply_to]
+          cc        options[:cc]
+          bcc       options[:bcc]
+          subject   options[:subject]
+          html_part do
+            content_type "text/html; charset=#{options[:charset]}"
+            body    options[:body]
           end
-          mail.deliver!
+        end
 
         # We need to ignore all the exceptions thrown by MailNotifier#notify.
-        rescue Exception => e
-          warn("Rusen: #{e.class}: #{e.message} prevented the notification email from being sent.")
-          puts e.backtrace
-        end
+        mail.deliver!
+      rescue Exception => exception
+        handle_notification_exception(exception)
       end
 
       private
@@ -67,7 +66,7 @@ module Rusen
         template_path = File.expand_path('../../templates/email_template.html.erb', __FILE__)
 
         template = File.open(template_path).read
-        rhtml = ERB.new(template)
+        rhtml = ERB.new(template, nil, '-')
         rhtml.result(binding)
       end
 

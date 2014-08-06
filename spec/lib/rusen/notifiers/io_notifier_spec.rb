@@ -16,7 +16,7 @@ describe Rusen::Notifiers::IONotifier do
   end
 
   let(:settings) { Rusen::Settings.new }
-  let(:output) { StringIO.new }
+  let(:output)   { StringIO.new }
   let(:notifier) { Rusen::Notifiers::IONotifier.new(settings, output) }
 
   let(:notification) do

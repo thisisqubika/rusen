@@ -1,7 +1,9 @@
+require_relative 'base_notifier'
+
 module Rusen
   module Notifiers
 
-    class IONotifier
+    class IONotifier < BaseNotifier
 
       STDOUT = $stdout
 
@@ -10,19 +12,18 @@ module Rusen
       end
 
       def initialize(settings, output = STDOUT)
-        @settings = settings.dup
-        @output = output
+        super(settings)
+        @output   = output
       end
 
       def notify(notification)
         @notification = notification
+        @sessions     = get_sessions(@notification)
 
-        begin
-          @output.puts build_content
         # We need to ignore all the exceptions thrown by IONotifier#notify.
-        rescue Exception => e
-          warn("Rusen: #{e.message} prevented the io notifier from login the error.")
-        end
+        @output.puts build_content
+      rescue Exception => exception
+        handle_notification_exception(exception)
       end
 
       private
@@ -31,7 +32,7 @@ module Rusen
         template_path = File.expand_path('../../templates/io_template.txt.erb', __FILE__)
 
         template = File.open(template_path).read
-        rhtml = ERB.new(template)
+        rhtml = ERB.new(template, nil, '-')
         rhtml.result(binding)
       end
 
