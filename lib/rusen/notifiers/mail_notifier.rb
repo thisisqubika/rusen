@@ -1,5 +1,14 @@
-require 'mail'
 require_relative 'base_notifier'
+
+begin
+  require 'mail'
+rescue LoadError
+  puts <<-MESSAGE
+  [Rusen Error] To use Mail notifier add this to your Gemfile:
+    gem 'mail'
+  MESSAGE
+  raise
+end
 
 module Rusen
   module Notifiers

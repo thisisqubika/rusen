@@ -1,5 +1,14 @@
-require 'pony'
 require_relative 'base_notifier'
+
+begin
+  require 'pony'
+rescue LoadError
+  puts <<-MESSAGE
+  [Rusen Error] To use Pony notifier add this to your Gemfile:
+    gem 'pony'
+  MESSAGE
+  raise
+end
 
 module Rusen
   module Notifiers

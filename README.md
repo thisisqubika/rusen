@@ -134,9 +134,26 @@ This will capture any unhandled exception, send an email and write a trace in st
 Settings
 ---
 ### Outputs
-Currently supported outputs are :io and :email. More outputs are easy to add so you can customize Rusen to your needs.
+Currently supported outputs are :io, :lo4r, :pony and :mail. More outputs are easy to add so you can customize Rusen to your needs.
 
 Note: :io will only print to stdout for the time being, but there are plans to extend it to anything that Ruby::IO supports.
+
+Pony, lo4r and Mail outputs require additional gems to work.
+
+To use pony add this to your Gemfile:
+```ruby
+  gem 'pony'
+```
+
+To use mail add this to your Gemfile:
+```ruby
+  gem 'mail'
+```
+
+To use log4r add this to your Gemfile:
+```ruby
+  gem 'log4r'
+```
 
 ### Sections
 You can choose the output sections simply by setting the appropriate values in the configuration.
@@ -171,6 +188,31 @@ log4r_config:
     - type: StdoutOutputter
       name: stdout
 ```
+
+Sidekiq
+---
+Rusen comes with sidekiq integration builtin to use just add this to your sidekiq initializer:
+```ruby
+require 'rusen/sidekiq'
+```
+You can configure it with the global rusen configuration, ex:
+```ruby
+require 'rusen/sidekiq'
+
+Rusen.settings.sender_address = 'some_email@example.com'
+Rusen.settings.exception_recipients = %w(dev_team@example.com test_team@example.com)
+Rusen.settings.smtp_settings = {
+  :address              => 'smtp.gmail.com',
+  :port                 => 587,
+  :domain               => 'example.org',
+  :authentication       => :plain,
+  :user_name            => 'dev_team@moove-it.com',
+  :password             => 'xxxxxxx',
+  :enable_starttls_auto => true
+}
+```
+
+Rusen supports versions ~> 2 and ~> 3 of sidekiq.
 
 Extending to more outputs
 ---

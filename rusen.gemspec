@@ -15,15 +15,10 @@ Gem::Specification.new do |s|
   s.require_paths = ["lib"]
   s.licenses = ["MIT"]
 
-  s.files         = Dir.glob("{bin,lib}/**/*") + %w(LICENSE README.md CHANGELOG.md Rakefile)
+  s.files         = Dir.glob('{bin,lib}/**/*') + %w(LICENSE README.md CHANGELOG.md Rakefile)
   s.executables   = s.files.grep(%r{^bin/}) { |f| File.basename(f) }
   s.test_files    = s.files.grep(%r{^(test|spec|features)/})
-  s.extra_rdoc_files = [
-    "CHANGELOG.md",
-    "LICENSE",
-    "README.md"
-  ]
-
+  s.extra_rdoc_files = %w[CHANGELOG.md LICENSE README.md]
 
   s.add_development_dependency('log4r')
   s.add_development_dependency('pony')
