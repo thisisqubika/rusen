@@ -17,6 +17,7 @@ module Rusen
 
           @rusen_settings.outputs = settings[:outputs]
           @rusen_settings.sections = settings[:sections]
+          @rusen_settings.filter_parameters = settings[:filter_parameters]
           @rusen_settings.email_prefix = settings[:email_prefix]
           @rusen_settings.sender_address = settings[:sender_address]
           @rusen_settings.exception_recipients = settings[:exception_recipients]

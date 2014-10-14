@@ -99,7 +99,7 @@ module Rusen
     #
     # @return [Array]
     def filter_parameters
-      if @filter_parameter
+      if @filter_parameters
         @filter_parameters || []
       else
         defined?(Rails) && Rails.application.config.filter_parameters
