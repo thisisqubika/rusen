@@ -16,7 +16,7 @@ module Rusen
   end
 
   # (see Rusen::Notifier#notify)
-  def self.notify(exception, request = nil, environment = nil, session = nil)
+  def self.notify(exception, request = {}, environment = {}, session = {})
     notifier.notify(exception, request, environment, session)
   end
 
