@@ -1,0 +1,205 @@
+<svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+  viewBox="402.6 0 1242.7 1507.4" enable-background="new 402.6 0 1242.7 1507.4"  xml:space="preserve">
+
+  <style tyle='text/css'>
+    .mail-container path{
+      stroke-width: 10;
+      stroke-misterlimit: 10;
+      stroke-dasharray: 5000;
+      stroke-dashoffset: 0;
+    }
+  </style>
+
+  <g class='mail-container'>
+
+    <path d="M 1645.3001,635.30002 1023.3995,1271.6 402.59998,635.30002 z"
+          id="background"
+          style="fill:#2785af" />
+
+    <path id="patch"
+          transform="translate(402.6,-4.1821387e-5)"
+          style="fill:#2785af" />
+
+    <g id="circle" transform="translate(-380, 0)">
+
+      <path fill="#C63E4B"
+            d="M1403.7,906.5c-126.4,0-229.1,102.6-229.1,229.1s102.6,229.1,229.1,229.1s229.1-102.6,229.1-229.1
+            S1530.2,906.5,1403.7,906.5z"/>
+
+      <path fill="#FFFFFF"
+            d="M1403.7,1386.6c-138.4,0-251-112.6-251-251s112.6-251,251-251s251,112.6,251,251
+            S1542.2,1386.6,1403.7,1386.6z M1403.7,928.4c-114.2,0-207.1,92.9-207.1,207.1s92.9,207.1,207.1,207.1
+            c114.2,0,207.1-92.9,207.1-207.1S1517.9,928.4,1403.7,928.4z"/>
+
+      <rect x="1380.8" y="1204.3"
+            fill="#FFFFFF" stroke="#FFFFFF"
+            stroke-width="2" stroke-miterlimit="10"
+            width="45.8"
+            height="45.8"/>
+
+      <rect x="1380.8" y="1021"
+            fill="#FFFFFF" stroke="#FFFFFF"
+            stroke-width="2"
+            stroke-miterlimit="10"
+            width="45.8"
+            height="137.4"/>
+
+      <animateTransform attributeName="transform"
+                        begin="2600ms"
+                        dur="1000ms"
+                        type="translate"
+                        keyTimes="0; .8; 1"
+                        values="-380 0; -380 -250; -380 -240"
+                        fill="freeze"/>
+
+    </g>
+
+    <path d="m 402.6,635.30002 0,872.09998 621.3,-436 z"
+          id="flap-left"
+          style="fill:#0D517C" />
+    <path d="m 1645.3001,1507.4 -1242.70011,0 621.35001,-437.3 z"
+          id="flap-bottom"
+          style="fill:#4590c1" />
+    <path d="m 1645.3,1507.4 0,-872.09998 L 1024,1071.4 z"
+          id="flap-right"
+          style="fill:#77b7e0" />
+    <path d="M 1645.3001,635.30002 1023.3995,1271.6 402.59998,635.30002 z"
+          id="flap-top"
+          style="fill:#2785af" />
+  </g>
+
+  <!-- Animation Definitions -->
+    <!-- Flap Left -->
+      <animate xlink:href="#flap-left"
+               attributeName="stroke-dashoffset"
+               attributeType="CSS"
+               from="5000"
+               to="0"
+               begin="0s"
+               fill="freeze"
+               dur="3s" />
+
+      <animate xlink:href="#flap-left"
+               attributeName="fill"
+               from="#fbfbfa"
+               to="#0D517C"
+               begin="0s"
+               fill="freeze"
+               dur="3s" />
+
+      <animate xlink:href="#flap-left"
+               attributeName="stroke"
+               from="#CCCCCC"
+               to="#0D517C"
+               begin="0s"
+               dur="2s" />
+    <!-- END Falp Left -->
+
+    <!-- Flap Bottom-->
+      <animate xlink:href="#flap-bottom"
+               attributeName="stroke-dashoffset"
+               attributeType="CSS"
+               from="5000" to="0"
+               begin="0s"
+               dur="3s" />
+
+      <animate xlink:href="#flap-bottom"
+               attributeName="fill"
+               attributeType="CSS"
+               from="#fbfbfa"
+               to="#4590C1"
+               begin="0s"
+               dur="3s" />
+
+      <animate xlink:href="#flap-bottom"
+               attributeName="stroke"
+               attributeType="CSS"
+               from="#CCCCCC"
+               to="#4590C1"
+               begin="0s"
+               dur="2s" />
+    <!-- END Falp Bottom -->
+
+    <!-- Flap Right -->
+      <animate xlink:href="#flap-right"
+               attributeName="stroke-dashoffset"
+               attributeType="CSS"
+               from="5000"
+               to="0"
+               begin="0s"
+               dur="3s" />
+
+      <animate xlink:href="#flap-right"
+               attributeName="fill"
+               attributeType="CSS"
+               from="#fbfbfa"
+               to="#77B7E0"
+               begin="0s"
+               dur="3s"/>
+
+      <animate xlink:href="#flap-right"
+               attributeName="stroke"
+               attributeType="CSS"
+               from="#CCCCCC"
+               to="#77B7E0"
+               begin="0s"
+               dur="2s" />
+    <!-- End Flap Right -->
+
+    <!-- Flap Top -->
+      <animate xlink:href="#flap-top"
+               attributeName="stroke-dashoffset"
+               attributeType="CSS"
+               from="5000"
+               to="0"
+               bein="0s"
+               dur="3s" />
+
+      <animate xlink:href="#flap-top"
+               attributeName="fill"
+               attributeType="CSS"
+               from="#fbfbfa"
+               to="#2785AF"
+               begin="0s"
+               dur="3s" />
+
+      <animate xlink:href="#flap-top"
+               attributeName="stroke"
+               attributeType="CSS"
+               from="#CCCCCC"
+               to="#2785AF"
+               begin="0s"
+               dur="2s" />
+
+      <animate xlink:href="#flap-top"
+               attributeName="d"
+               dur="600ms"
+               begin="2s"
+               calcMode="linear"
+               from="M 1645.3001,635.30002 1023.3995,1271.6 402.59998,635.30002 z"
+               to="M 1645.3001,635.30002 1023.3995,-0.9999547 402.59998,635.30002 z"
+               fill="freeze"/>
+
+      <animate xlink:href="#flap-top"
+               attributeName="fill"
+               dur="1s"
+               begin="2s"
+               keyTime="0; 0.5; 0.52; 1"
+               calcMode="linear"
+               values="#2785af; #66b9dd; #216f93; #2785af"
+               to="M 1644.1,638 1022.8,1.7000004 402.6,638 z"
+               fill="freeze"/>
+    <!-- End Flap Top -->
+
+    <!-- Patch -->
+      <animate xlink:href="#patch"
+               attributeName='d'
+               dur='400ms'
+               begin='2.3s'
+               from='M 620.8125,635.35624 0,635.3125 l 0,59.38378 1242.6875,0 0,-59.38378 z'
+               to='M 620.8125,271.94195 0,635.3125 l 0,59.38378 1242.6875,0 0,-59.38378 z'
+               calcMode="linear"
+               fill="freeze"/>
+    <!-- End Patch -->
+  <!-- End Animations Definitions -->
+</svg>

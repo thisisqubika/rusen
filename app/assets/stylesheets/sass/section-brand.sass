@@ -1,0 +1,128 @@
+.SectionBrand
+  @extend %SectionPages
+
+  max-height: 100%
+  position: relative
+
+  background: url(/images/ruy_line_guides.svg) center center no-repeat fixed
+
+  @media #{$landscape}
+    background-size: auto 1000px
+    @media #{$medium-up}
+      background-size: 2000px
+
+  @media #{$portrait}
+    background-size: auto 1500px
+    @media #{$medium-up}
+      background-size: auto
+
+  &-scroll
+    display: none
+
+    @media #{$large-up}
+      @include animation(scroll 1s ease-in)
+      @include animation-iteration-count(infinite)
+      @include animation-fill-mode(both)
+      width: rem-calc(40)
+      height: rem-calc(40)
+      text-align: center
+      color: DimGray
+      position: absolute
+      top: calc(100% - 80px)
+      left: calc(50% - 20px)
+      font-size: rem-calc(37)
+      display: block
+      &:link, &:active, &:hover, &:visited
+       text-decoration: none
+       border: 0
+
+  &-mail
+    position: absolute
+    @media #{$landscape}
+      width: 100px
+      height: 108px
+      top: calc(50% - 60px)
+      left: calc(50% - 50px)
+
+    @media #{$portrait}
+      height: 162px
+      width: 150px
+      top: calc(50% - 75px)
+      left: calc(50% - 75px)
+
+    @media #{$medium-up}
+      width: 250px
+      height: 400px
+      top: calc(50% - 180px)
+      left: calc(50% - 125px)
+
+  &-logo
+    position: absolute
+    @media #{$landscape}
+      width: 100px
+      height: 108px
+      top: calc(65%)
+      left: calc(50% - 50px)
+      margin-left: 1px
+
+    @media #{$portrait}
+      width: 150px
+      height: 162px
+      top: calc(65%)
+      left: calc(50% - 75px)
+      margin-left: 1px
+
+    @media #{$medium-up}
+      width: 200px
+      height: 216px
+      top: calc(65%)
+      left: calc(50% - 100px)
+      margin-left: 1px
+
+  &-moto
+    font-weight: 100
+    color: DimGray
+    text-align: center
+    position: absolute
+
+    @media #{$landscape}
+      width: rem-calc(300)
+      top: calc(15%)
+      left: calc(50% - 150px)
+      font-size: rem-calc(20)
+
+    @media #{$portrait}
+      width: rem-calc(250)
+      top: calc(15%)
+      left: calc(50% - 125px)
+      font-size: rem-calc(24)
+
+    @media #{$medium-up}
+      top: calc(15%)
+      font-size: 3rem
+      left: calc(50% - 450px)
+      width: rem-calc(900)
+
+  &-rubies
+    width: 100%
+    height: 100%
+
+    &-layer
+      background-position: center center
+      background-repeat: no-repeat
+      position: absolute
+      width: 100%
+      height: 100%
+      top: 0
+      left: 0
+      display: none
+
+      @media #{$landscape}
+        background-size: auto 2000px
+        display: block
+        @media #{$medium-up}
+          background-size: auto
+
+    @for $i from 1 to 4
+      &__#{$i}
+        background-image: url('/images/rubies-0#{$i}.png')
