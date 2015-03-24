@@ -19,8 +19,8 @@ cp -r build/* ../
 
 cd ../
 
-# git add . --all
-# git commit -m 'Deploy new build.'
-# git push origin gh-pages
+git add . --all
+git commit -m 'Deploy new build.'
+git push origin gh-pages
 
 # tar czf $tarFileName ./build
