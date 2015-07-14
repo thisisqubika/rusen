@@ -1,0 +1,20 @@
+doctype html
+html
+  head
+    title
+      | Rusen - The Ruby Simple Exception Notification
+    meta(name='viewport', content='width=device-width, initial-scale=1')
+    link(rel='stylesheet', href='dist/main.css')
+    link(rel='icon', href='images/rusen.ico')
+
+  body
+    //- Header NavBar
+    include ./application/header.jade
+
+    //- Content
+    block content
+
+    //-  Footer
+    include ./application/footer.jade
+
+    script(src='dist/main.js')

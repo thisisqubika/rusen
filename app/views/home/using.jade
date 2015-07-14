@@ -1,0 +1,37 @@
+section#using.SectionUsing
+  .container-cell
+    .row
+      h2.SectionInstall-title
+        | How to use it
+      .SectionUsing-sublime
+        .terminal-window
+          header
+            .terminal-button.green
+            .terminal-button.yellow
+            .terminal-button.red
+          section.terminal
+            header.terminal-header
+              ulgit
+                li example.rb
+            section.terminal-body
+              pre.prettyprint.linenums.lang-rb
+                code
+                  :verbatim
+                    require 'rusen'
+
+                    Rusen.settings.outputs = [:io, :email]
+                    Rusen.settings.sections = [:backtrace, :request, :session, :environment]
+                    Rusen.settings.email_prefix = '[ERROR] '
+                    Rusen.settings.sender_address = 'some_email@example.com'
+                    Rusen.settings.exception_recipients = %w(dev_team@example.com test_team@example.com)
+                    Rusen.settings.smtp_settings = {
+                      :address            => 'smtp.gmail.com',
+                      :port                 => 587,
+                      :domain               => 'example.org',
+                      :authentication       => :plain,
+                      :user_name            => 'dev_team@moove-it.com',
+                      :password             => 'xxxxxxx',
+                      :enable_starttls_auto => true
+                    }
+
+          footer.terminal-footer

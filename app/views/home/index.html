@@ -1,0 +1,31 @@
+<!DOCTYPE html><html><head><title>RUY - Rules engine for ruby</title><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="stylesheet" href="dist/main.css"><link rel="icon" href="images/ruy.ico"></head><body><header itemscope="" itemtype="http://schema.org/Organization" class="Header"><div class="Header-wrapper"><a href="/" class="Header-logo"><img src="images/ruy_logo.svg"></a><nav class="Navbar"><div class="Navbar-doc"><a href="https://github.com/Moove-it/ruy" target="_blank">docs</a></div><ul class="Navbar-list"><li class="Navbar-listItem why-index"><a href="#why">why</a></li><li class="Navbar-listItem install-index"><a href="#install">install</a></li><li class="Navbar-listItem using-index"><a href="#using">using</a></li><li class="Navbar-listItem docs-index Navbar-listItem--doc"><a href="https://github.com/Moove-it/ruy" target="_blank">docs</a></li></ul></nav></div></header><section id="brand" class="SectionBrand"><div class="container-cell"><div class="row"><div class="SectionBrand-moto">Rules engine for ruby</div><div class="SectionBrand-rubies"><div data-velocity=".2" class="SectionBrand-rubies-layer SectionBrand-rubies__1 parallax"></div><div data-velocity=".4" class="SectionBrand-rubies-layer SectionBrand-rubies__2 parallax"></div><div data-velocity=".5" class="SectionBrand-rubies-layer SectionBrand-rubies__3 parallax"></div></div><img src="images/ruy_ruby.svg" class="SectionBrand-ruby"><img src="images/ruy_logo.svg" class="SectionBrand-logo"></div><a href="#why" class="SectionBrand-scroll"><i class="fa fa-chevron-down"></i></a></div></section><div class="fork-top"><a href="https://github.com/Moove-it/ruy" target="_blank"><img src="https://camo.githubusercontent.com/365986a132ccd6a44c23a9169022c0b5c890c387/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f7265645f6161303030302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_red_aa0000.png"></a></div><section id="why" class="SectionWay"><div class="container-cell"><div class="row"><div class="SectionWay-description"><div class="container-cell"><h2 class="SectionWay-title">Why Ruy</h2><div class="SectionWay-description-paragraph"><p class="SectionWay-description-paragraph-text">Ruy is a rules engine built for detecting when certain conditions obtain,
+and what events (or outcomes) should be trigger when they do.</p><p class="SectionWay-description-paragraph-text">A Ruy ruleset is a combination of rules that check for
+conditions and result in zero or more outcomes.</p><p class="SectionWay-description-paragraph-text">Rulesets are loaded from an adapter that lets developers specify
+how to persist and store their rules arbitrarily.</p></div></div></div><div class="SectionWay-diagram"><div class="container-cell"><img src="images/diagram.svg"></div></div></div></div></section><section id="install" class="SectionInstall"><div class="container-cell"><div class="row"><h2 class="SectionInstall-title">Install</h2><div class="SectionInstall-terminal"><div class="terminal-window"><header><div class="terminal-button green"></div><div class="terminal-button yellow"></div><div class="terminal-button red"></div></header><section class="terminal"><span class="terminal-arrow"><i class="fa fa-long-arrow-right"></i></span><span class="terminal-tilde">~</span><span class="command">gem install ruy</span><span class="prompt"></span><span class="typed-cursor"></span></section></div></div><div class="separator vertical"><div class="separator-text">or</div></div><div class="SectionInstall-sublime"><div class="terminal-window"><header><div class="terminal-button green"></div><div class="terminal-button yellow"></div><div class="terminal-button red"></div></header><section class="terminal"><header class="terminal-header"><ul><li>Gemfile</li></ul></header><section class="terminal-body"><pre class="prettyprint linenums lang-rb"><code>source 'http://rubygems.org'
+
+gem  'ruy',  '0.1.0’
+</code></pre></section></section><footer class="terminal-footer"></footer></div></div></div></div></section><section id="using" class="SectionUsing"><div class="container-cell"><div class="row"><h2 class="SectionInstall-title">Using</h2><div class="SectionUsing-sublime"><div class="terminal-window"><header><div class="terminal-button green"></div><div class="terminal-button yellow"></div><div class="terminal-button red"></div></header><section class="terminal"><header class="terminal-header"><ul><li>example.rb</li></ul></header><section class="terminal-body"><pre class="prettyprint linenums lang-rb"><code>ruleset = Ruy::RuleSet.new
+
+# RuleSets can use :any and :all to do AND and OR groupings of conditions.
+
+ruleset.any do
+
+    # RuleSets evaluate against Context variables.
+    # Equality, scalarity (less than, greater
+    # than or equal to, etc), and inclusion/exclusion
+    # are supported
+
+    between :age, 18, 22
+    eq :school, 'University of Texas'
+end
+
+# RuleSets can have multiple outcomes when
+# conditions obtain in a certain Context.
+
+ruleset.outcome 'I matched!'
+
+ruleset.(age: 20) #=> "I matched!"
+ruleset.(age: 20, school: 'University of Alabama') #=> "I matched!"
+ruleset.(age: 16, school: 'University of Texas')   #=> "I matched!"
+ruleset.(age: 10, school: 'University of Alabama') #=> nil
+</code></pre></section></section><footer class="terminal-footer"></footer></div></div></div></div></section><footer class="Footer"><div class="Footer-row"><div class="Footer-content"><a href="https://github.com/Moove-it/ruy" target="_blank"><img src="images/ruy_logo.svg" class="ruy"></a><span class="maintained">is maintained by</span><a href="http://www.moove-it.com" target="_blank"><img src="images/mooveit_logo.svg" class="moove-it"></a></div></div></footer><script src="dist/main.js"></script></body></html>
