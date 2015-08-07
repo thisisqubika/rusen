@@ -51,15 +51,4 @@ namespace :test do
   end
 end
 
-#require File.expand_path('../lib/rusen/version', __FILE__)
-#require 'rdoc'
-#require 'rdoc/task'
-#RDoc::Task.new do |rdoc|
-#  rdoc.rdoc_dir = 'rdoc'
-#  rdoc.title    = "Rusen #{Rusen::VERSION}"
-#  rdoc.options << '--line-numbers'
-#  rdoc.rdoc_files.include('README*')
-#  rdoc.rdoc_files.include('lib/**/*.rb')
-#end
-
 Bundler::GemHelper.install_tasks
