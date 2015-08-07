@@ -9,15 +9,13 @@ The notification includes information about the current request, session, enviro
 |------------------------ | ----------------- |
 | gem name                |  rusen   |
 | license                 |  MIT              |
-| moldiness               |  [![Maintainer Status](http://stillmaintained.com/Moove-it/rusen.png)](http://stillmaintained.com/Moove-it/rusen) |
 | version                 |  [![Gem Version](https://badge.fury.io/rb/rusen.png)](http://badge.fury.io/rb/rusen) |
-| dependencies            |  [![Dependency Status](https://gemnasium.com/Moove-it/rusen.png)](https://gemnasium.com/Moove-it/rusen) |
 | code quality            |  [![Code Climate](https://codeclimate.com/github/Moove-it/rusen.png)](https://codeclimate.com/github/Moove-it/rusen) |
-| continuous integration  |  [![Build Status](https://secure.travis-ci.org/Moove-it/rusen.png?branch=master)](https://travis-ci.org/Moove-it/rusen) |
-| test coverage           |  [![Coverage Status](https://coveralls.io/repos/Moove-it/rusen/badge.png)](https://coveralls.io/r/Moove-it/rusen) |
-| homepage                |  [https://github.com/Moove-it/rusen][homepage] |
-| documentation           |  [http://rdoc.info/github/Moove-it/rusen/frames][documentation] |
-| author                  |  [Adrian Gomez](https://coderbits.com/Moove-it) |
+| continuous integration  |  [![Build Status](https://secure.travis-ci.org/moove-it/rusen.png?branch=master)](https://travis-ci.org/moove-it/rusen) |
+| test coverage           |  [![Coverage Status](https://coveralls.io/repos/moove-it/rusen/badge.svg?branch=master&service=github)](https://coveralls.io/github/moove-it/rusen?branch=master) |
+| homepage                |  [https://github.com/moove-it/rusen][homepage] |
+| documentation           |  [http://rdoc.info/github/moove-it/rusen/frames][documentation] |
+| author                  |  [Adrian Gomez](https://github.com/adrian-gomez) |
 
 Installation
 ---
@@ -224,7 +222,7 @@ Adrian Gomez is the author of the code, and current maintainer.
 
 ## Contributors
 
-See the [Network View](https://github.com/Moove-it/rusen/network) and the [CHANGELOG](https://github.com/Moove-it/rusen/blob/master/CHANGELOG.md)
+See the [Network View](https://github.com/moove-it/rusen/network) and the [CHANGELOG](https://github.com/moove-it/rusen/blob/master/CHANGELOG.md)
 
 ## Contributing
 
@@ -258,5 +256,5 @@ For example:
 
 [semver]: http://semver.org/
 [pvc]: http://docs.rubygems.org/read/chapter/16#page74
-[documentation]: http://rdoc.info/github/Moove-it/rusen/frames
-[homepage]: https://github.com/Moove-it/rusen
+[documentation]: http://rdoc.info/github/moove-it/rusen/frames
+[homepage]: https://github.com/moove-it/rusen
