@@ -46,7 +46,7 @@ module Rusen
 
       # We need to ignore all the exceptions thrown by the notifiers.
       rescue Exception
-        warn("Rusen: Some or all the notifiers failed to sent the notification.")
+        warn('Rusen: Some or all the notifiers failed to sent the notification.')
       end
     end
 

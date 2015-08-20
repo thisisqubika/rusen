@@ -2,6 +2,10 @@ require 'rusen/version'
 require 'rusen/settings'
 require 'rusen/notifier'
 
+# Rusen is a util to help you with the tracking on the
+#   application exceptions, this could be used on any
+#   ruby project. The exceptions can be sent to different
+#   outputs depending on your apps requirements.
 module Rusen
 
   @settings = Settings.new

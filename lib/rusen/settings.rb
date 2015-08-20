@@ -16,13 +16,26 @@ module Rusen
     attr_accessor :logger_name
     attr_accessor :log4r_config_file
 
+    # Create a new Settings object using the given
+    #   attributes.
+    #
+    # @param [Hash<String, Object>] attrs a hash with the
+    #   options used to create a setting object.
+    def initialize(attrs = {})
+      (attrs || {}).each do |attr_name, value|
+        method_name = "#{attr_name}=".to_sym
+
+        self.send(method_name, value) if self.respond_to?(method_name)
+      end
+    end
+
     # Returns the configured outputs.
     #
-    # Default: []
+    # Default: [:mail]
     #
     # @return [Array<Symbol>]
     def outputs
-      @outputs || []
+      @outputs || [:mail]
     end
 
     # Returns the notification email prefix.
@@ -70,13 +83,17 @@ module Rusen
       @sections || [:backtrace, :request, :session, :environment]
     end
 
-    # Returns the email smtp settings.
-    #
-    # Default: {}
+    # Returns the email smtp settings, if Rusen is included on a Rails
+    #   application the smtp settings for the application is returned,
+    #   otherwise an empty has is returned.
     #
     # @return [Hash<Symbol, Object>]
     def smtp_settings
-      @smtp_settings || {}
+      if @smtp_settings
+        @smtp_settings
+      else
+        (defined?(Rails) && Rails.configuration.action_mailer.smtp_settings) || {}
+      end
     end
 
     # Returns whether to send or not the notification for a exception.
@@ -102,7 +119,7 @@ module Rusen
       if @filter_parameters
         @filter_parameters || []
       else
-        defined?(Rails) && Rails.application.config.filter_parameters
+        defined?(Rails) && Rails.configuration.filter_parameters
       end
     end
 

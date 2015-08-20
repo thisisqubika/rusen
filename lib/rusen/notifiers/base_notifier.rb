@@ -4,16 +4,41 @@ require_relative '../utils/parameter_filter'
 module Rusen
   module Notifiers
 
+    # This class define all the base behaviour of all notifiers,
+    #   for creating new notifiers this class should be
+    #   extended.
     class BaseNotifier
 
-      def self.identification_symbol
-        :base_notifier
+      class << self
+
+        # Symbol that represent the notifier, all subclasses must
+        #   override this method to be correctly identified.
+        #
+        # @return [Symbol]
+        def identification_symbol
+          :base_notifier
+        end
+
       end
 
+      # Create a new instance of a Notifier.
+      #
+      # @param [Rusen::Setting] settings the settings that will be
+      #   used to notify, depending on this configuration is where
+      #   the exception will be notified.
+      #
+      # @return [Rusen::Notifier::BaseNotifier]
       def initialize(settings)
         @settings = settings.dup
       end
 
+      # Given the exception returns all the sessions that will be
+      #   included on the notification.
+      #
+      # @param [Rusen::Notification] notification information that
+      #   will be notified.
+      #
+      # @return [Hash<String, Object>]
       def get_sessions(notification)
         result = {}
 
@@ -25,6 +50,12 @@ module Rusen
         result
       end
 
+      # Some times when we try to notify exceptions an error could
+      #   happen, for example if someone forgot to config the smtp
+      #   settings, if that happens and an exception is raised then
+      #   a warn is logged on the console saying the problem.
+      #
+      # @param [Exception] exception the error that was raised.
       def handle_notification_exception(exception)
         name = self.class.identification_symbol.to_s
 
@@ -33,6 +64,7 @@ module Rusen
 
       private
 
+      # @private
       def include_session(sessions, session, session_key)
         @settings.sections
 
@@ -43,6 +75,7 @@ module Rusen
         end
       end
 
+      # @private
       def parameter_filter
         @parameter_filter ||= ParameterFilter.new(@settings.filter_parameters)
       end
