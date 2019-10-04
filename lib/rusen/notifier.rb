@@ -38,7 +38,17 @@ module Rusen
     # @param [Hash<Object, Object>] session The session status.
     def notify(exception, request = {}, environment = {}, session = {})
       begin
-        notification = Notification.new(exception, request, environment, session)
+
+        notification = nil
+        if respond_to?(:transform)
+          transformed_exception = transform_exception(exception)
+          transformed_request = transform_enumerable(request)
+          transformed_environment = transform_enumerable(environment)
+          transformed_session = transform_enumerable(session)
+          notification = Notification.new(transformed_exception, transformed_request, transformed_environment, transformed_session)
+        else
+          notification = Notification.new(exception, request, environment, session)
+        end
 
         @notifiers.each do |notifier|
           notifier.notify(notification)
@@ -50,6 +60,24 @@ module Rusen
       end
     end
 
-  end
+    # Transform an exception of type StandardError
+    def transform_exception(exception)
+      duplicate = exception.clone
+      filtered_message = transform(duplicate.message)
+      duplicate.message.replace(filtered_message)
+      duplicate.backtrace.map! { |line| transform(line) }
+      duplicate
+    end
 
+    # Recursive function that transform hashes, arrays and any object that can be translated to a string like integers
+    def transform_enumerable(value)
+      if value.is_a? Hash
+        value.each { |k, e| value[k] = transform_enumerable(e) }
+      elsif value.is_a? Array
+        value.map { |e| transform_enumerable(e) }
+      else
+        transform(value.to_s)
+      end
+    end
+  end
 end
